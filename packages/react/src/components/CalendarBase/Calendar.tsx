@@ -21,7 +21,7 @@ import {
 } from './styles';
 import { useDateFormatter, useLocale } from '@react-aria/i18n';
 import { Icon } from '../Icon';
-import { IconButton } from '../IconButton';
+import { IconButton } from '../Button';
 import { mergeProps } from '@react-aria/utils';
 import { Typography } from '../Typography';
 import { useFocusRing } from '@react-aria/focus';
@@ -98,6 +98,12 @@ const Calendar = React.forwardRef<CalendarElement, CalendarProps>((props, forwar
   );
 });
 
+if (__DEV__) {
+  Calendar.displayName = 'ManifestCalendar';
+}
+
+Calendar.toString = () => '.manifest-calendar';
+
 /**
  * -----------------------------------------------------------------------------------------------
  * Calendar Cell
@@ -160,15 +166,15 @@ const CalendarCell = React.forwardRef<CalendarDateElement, CalendarCellProps>(
     return (
       <div
         {...mergeProps(cellProps, other)}
-        className={cx('manifest-calendar--cell', className, classNameProp)}
+        className={cx('manifest-calendar-cell', className, classNameProp)}
         ref={forwardedRef}
       >
         <button
           {...mergeProps(buttonProps, hoverProps, focusProps)}
-          className="manifest-calendar--cell-button"
+          className="manifest-calendar-cell--button"
           ref={dateRef}
         >
-          <Typography className="manifest-calendar--cell-text" variant="caption">
+          <Typography className="manifest-calendar-cell--text" variant="caption">
             {formattedDate}
           </Typography>
         </button>
@@ -176,6 +182,12 @@ const CalendarCell = React.forwardRef<CalendarDateElement, CalendarCellProps>(
     );
   },
 );
+
+if (__DEV__) {
+  CalendarCell.displayName = 'ManifestCalendarCell';
+}
+
+CalendarCell.toString = () => '.manifest-calendar-cell';
 
 /**
  * -----------------------------------------------------------------------------------------------
@@ -213,13 +225,13 @@ const CalendarGrid = React.forwardRef<CalendarGridElement, CalendarGridProps>(
     return (
       <div
         {...mergeProps(gridProps, other)}
-        className={cx('manifest-calendar--grid', className, classNameProp)}
+        className={cx('manifest-calendar-grid', className, classNameProp)}
         ref={forwardedRef}
       >
-        <div {...headerProps} className="manifest-calendar--grid-row">
+        <div {...headerProps} className="manifest-calendar-grid--row">
           {weekDays.map((day, dayIndex) => (
-            <div className={cx('manifest-calendar--cell', cellClassName)} key={dayIndex}>
-              <Typography className="manifest-calendar--cell-text" variant="caption">
+            <div className={cx('manifest-calendar-cell', cellClassName)} key={dayIndex}>
+              <Typography className="manifest-calendar-cell--text" variant="caption">
                 {day}
               </Typography>
             </div>
@@ -238,6 +250,12 @@ const CalendarGrid = React.forwardRef<CalendarGridElement, CalendarGridProps>(
     );
   },
 );
+
+if (__DEV__) {
+  CalendarGrid.displayName = 'ManifestCalendarGrid';
+}
+
+CalendarGrid.toString = () => '.manifest-calendar-grid';
 
 /**
  * -----------------------------------------------------------------------------------------------
@@ -279,24 +297,24 @@ const CalendarHeader = React.forwardRef<CalendarHeaderElement, CalendarHeaderPro
     return (
       <div
         {...other}
-        className={cx('manifest-calendar--header', className, classNameProp)}
+        className={cx('manifest-calendar-header', className, classNameProp)}
         ref={forwardedRef}
       >
         <IconButton
           {...prevButtonProps}
-          className="manifest-calendar--header-button"
+          className="manifest-calendar-header--button"
           variant="tertiary"
         >
           <Icon icon={direction === 'rtl' ? 'arrow_right' : 'arrow_left'} />
         </IconButton>
 
-        <Typography aria-hidden className="manifest-calendar--header-title" variant="subtext">
+        <Typography aria-hidden className="manifest-calendar-header--title" variant="subtext">
           {dateFormatter.format(state.visibleRange.start.toDate(state.timeZone))}
         </Typography>
 
         <IconButton
           {...nextButtonProps}
-          className="manifest-calendar--header-button"
+          className="manifest-calendar-header--button"
           variant="tertiary"
         >
           <Icon icon={direction === 'rtl' ? 'arrow_left' : 'arrow_right'} />
@@ -305,6 +323,12 @@ const CalendarHeader = React.forwardRef<CalendarHeaderElement, CalendarHeaderPro
     );
   },
 );
+
+if (__DEV__) {
+  CalendarHeader.displayName = 'ManifestCalendarHeader';
+}
+
+CalendarHeader.toString = () => '.manifest-calendar-header';
 
 export { Calendar, CalendarCell, CalendarGrid, CalendarHeader };
 export type { CalendarProps, CalendarCellProps, CalendarGridProps, CalendarHeaderProps };

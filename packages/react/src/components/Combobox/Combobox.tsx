@@ -1,8 +1,8 @@
 import type { AriaComboBoxProps } from '@react-types/combobox';
+import * as LisBoxBase from '../ListBoxBase';
 import * as React from 'react';
 import { comboboxStyles, CSS, cx } from './styles';
 import { Item, Section } from '@react-stately/collections';
-import { ListBoxBase, ListBoxBaseProps } from '../internal';
 import { mergeProps, useLayoutEffect, useResizeObserver } from '@react-aria/utils';
 import { FormControl } from '../FormControl';
 import { Icon } from '../Icon';
@@ -167,8 +167,8 @@ const Combobox = React.forwardRef<ComboboxElement, ComboboxProps>((props, forwar
             onClose={state.close}
             ref={popoverRef}
           >
-            <ListBoxBase
-              {...(listBoxProps as ListBoxBaseProps)}
+            <LisBoxBase.ListBox
+              {...(listBoxProps as LisBoxBase.ListBoxProps)}
               className="manifest-combobox--list-box"
               css={{ padding: '$small' }}
               disallowEmptySelection

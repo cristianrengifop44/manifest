@@ -1,7 +1,6 @@
-import { styled } from '../../../styles';
-import { Typography } from '../../Typography';
+import { css } from '../../styles';
 
-export const StyledListBox = styled('div', {
+export const useListBoxStyles = css({
   boxSizing: 'border-box',
   margin: 0,
   outline: 'none',
@@ -9,7 +8,7 @@ export const StyledListBox = styled('div', {
   position: 'relative',
 });
 
-export const StyledListBoxItem = styled('div', {
+export const useListItemBoxStyles = css({
   $$listBoxItemBackgroundColor: 'transparent',
 
   alignItems: 'center',
@@ -24,6 +23,29 @@ export const StyledListBoxItem = styled('div', {
   position: 'relative',
   transition: '$color',
   typography: '$subtext',
+
+  '.manifest-listbox-item--icon': {
+    alignSelf: 'center',
+    color: '$text-secondary',
+    display: 'inline-flex',
+    flexShrink: 0,
+  },
+
+  '.manifest-listbox-item--icon__end': {
+    marginLeft: '$small',
+  },
+
+  '.manifest-listbox-item--icon__start': {
+    marginRight: '$small',
+  },
+
+  '.manifest-listbox-item--text': {
+    display: 'block',
+    flex: '1 1 0%',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
 
   variants: {
     isDisabled: {
@@ -56,35 +78,21 @@ export const StyledListBoxItem = styled('div', {
   },
 });
 
-export const StyledListBoxItemText = styled(Typography, {
-  display: 'block',
-  flex: '1 1 0%',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
-});
+export const useListBoxSectionStyles = css({
+  boxSizing: 'border-box',
+  margin: 0,
+  minWidth: 0,
 
-export const StyledListBoxItemIcon = styled('span', {
-  alignSelf: 'center',
-  color: '$text-secondary',
-  display: 'inline-flex',
-  flexShrink: 0,
+  '.manifest-listbox-section--group': {
+    margin: 0,
+    padding: 0,
+  },
 
-  variants: {
-    placement: {
-      end: {
-        marginLeft: '$small',
-      },
-      start: {
-        marginRight: '$small',
-      },
-    },
+  '.manifest-listbox-section--label': {
+    color: '$text-tertiary',
+    px: '$x-small',
   },
 });
 
-export const StyledListBoxSection = styled('div', { margin: 0, padding: 0 });
-
-export const StyledListBoxSectionTitle = styled(Typography, {
-  color: '$text-tertiary',
-  px: '$x-small',
-});
+export type { CSS } from '../../styles';
+export { cx } from '../../styles';

@@ -1,6 +1,6 @@
 import { css } from '../../styles';
 
-export const avatarStyles = css({
+export const useAvatarStyles = css({
   $$avatarSize: '2.5rem',
   $$avatarFontSize: '$small',
   $$avatarLineHeight: '$medium',

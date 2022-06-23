@@ -20,7 +20,7 @@ export const calendarCellStyles = css({
   position: 'relative',
   width: 44,
 
-  '.manifest-calendar--cell-button': {
+  '.manifest-calendar-cell--button': {
     all: 'unset',
     alignItems: 'center',
     appearance: 'none',
@@ -38,7 +38,7 @@ export const calendarCellStyles = css({
     width: '100%',
   },
 
-  '.manifest-calendar--cell-text': {
+  '.manifest-calendar-cell--text': {
     alignItems: 'center',
     borderRadius: '$full',
     display: 'flex',
@@ -58,14 +58,14 @@ export const calendarCellStyles = css({
     },
     isFocusVisible: {
       true: {
-        ['.manifest-calendar--cell-text']: {
+        ['.manifest-calendar-cell--text']: {
           outline: '$colors$palette-indigo-200 solid 3px',
         },
       },
     },
     isHovered: {
       true: {
-        ['.manifest-calendar--cell-text']: {
+        ['.manifest-calendar-cell--text']: {
           backgroundColor: '$palette-grey-200',
         },
       },
@@ -91,7 +91,7 @@ export const calendarCellStyles = css({
         borderBottomRightRadius: '$full',
         borderTopRightRadius: '$full',
 
-        ['.manifest-calendar--cell-text']: {
+        ['.manifest-calendar-cell--text']: {
           backgroundColor: '$primary',
         },
       },
@@ -104,14 +104,14 @@ export const calendarCellStyles = css({
         borderBottomLeftRadius: '$full',
         borderTopLeftRadius: '$full',
 
-        ['.manifest-calendar--cell-text']: {
+        ['.manifest-calendar-cell--text']: {
           backgroundColor: '$primary',
         },
       },
     },
     isToday: {
       true: {
-        ['.manifest-calendar--cell-text']: {
+        ['.manifest-calendar-cell--text']: {
           fontWeight: '$semibold',
 
           '&::after': {
@@ -135,7 +135,7 @@ export const calendarCellStyles = css({
       css: {
         $$textColor: '$colors$white',
 
-        ['.manifest-calendar--cell-text']: {
+        ['.manifest-calendar-cell--text']: {
           backgroundColor: '$palette-indigo-700',
         },
       },
@@ -146,7 +146,7 @@ export const calendarCellStyles = css({
       css: {
         $$textColor: '$colors$white',
 
-        ['.manifest-calendar--cell-text']: {
+        ['.manifest-calendar-cell--text']: {
           backgroundColor: '$palette-indigo-700',
         },
       },
@@ -162,7 +162,7 @@ export const calendarCellStyles = css({
 });
 
 export const calendarGridStyles = css({
-  '.manifest-calendar--grid-row': {
+  '.manifest-calendar-grid--row': {
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'center',

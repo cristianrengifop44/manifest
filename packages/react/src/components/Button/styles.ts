@@ -1,6 +1,6 @@
 import { focus, css } from '../../styles';
 
-export const buttonStyles = css(
+export const useButtonStyles = css(
   {
     $$buttonBackgroundColor: 'transparent',
     $$buttonBoxShadow: '$shadows$small',
@@ -191,7 +191,7 @@ export const buttonStyles = css(
   focus,
 );
 
-export const buttonGroupStyles = css({
+export const useButtonGroupStyles = css({
   boxSizing: 'border-box',
   display: 'inline-flex',
 
@@ -218,6 +218,21 @@ export const buttonGroupStyles = css({
 
   defaultVariants: {
     isAttached: false,
+  },
+});
+
+export const useIconButtonStyles = css({
+  justifyContent: 'center',
+
+  variants: {
+    size: {
+      medium: {
+        padding: '$small',
+      },
+      small: {
+        padding: '$x-small',
+      },
+    },
   },
 });
 

@@ -1,9 +1,8 @@
 import { css } from '../../styles';
 
-export const useBoxStyles = css({
-  boxSizing: 'border-box',
-  margin: 0,
-  minWidth: 0,
+export const useIconStyles = css({
+  alignSelf: 'center',
+  userSelect: 'none',
 });
 
 export type { CSS } from '../../styles';
