@@ -6,7 +6,6 @@ export const useCheckboxStyles = css({
 
   alignItems: 'center',
   boxSizing: 'border-box',
-  cursor: 'pointer',
   display: 'inline-flex',
   justifyContent: 'flex-start',
   position: 'relative',

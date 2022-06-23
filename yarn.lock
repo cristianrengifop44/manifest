@@ -3122,6 +3122,8 @@ __metadata:
     "@react-aria/listbox": ^3.5.1
     "@react-aria/menu": ^3.5.1
     "@react-aria/overlays": ^3.9.1
+    "@react-aria/radio": ^3.2.1
+    "@react-aria/select": ^3.7.1
     "@react-aria/separator": ^3.2.1
     "@react-aria/ssr": ^3.2.0
     "@react-aria/switch": ^3.2.1
@@ -3134,6 +3136,7 @@ __metadata:
     "@react-stately/menu": ^3.3.1
     "@react-stately/overlays": ^3.3.1
     "@react-stately/radio": ^3.4.1
+    "@react-stately/select": ^3.2.1
     "@react-stately/toggle": ^3.3.1
     "@react-stately/tooltip": ^3.1.1
     "@react-stately/utils": ^3.5.0
@@ -4129,6 +4132,48 @@ __metadata:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 6812b68bd17491155b6e57297a1f61b83ca367189d8113042c403341a14eb79a8d5d7ee799861316b24e9414c3b62a59d8d9413ff0b0e174567ed860267c031d
+  languageName: node
+  linkType: hard
+
+"@react-aria/radio@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@react-aria/radio@npm:3.2.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-aria/focus": ^3.6.1
+    "@react-aria/i18n": ^3.4.1
+    "@react-aria/interactions": ^3.9.1
+    "@react-aria/label": ^3.3.1
+    "@react-aria/utils": ^3.13.1
+    "@react-stately/radio": ^3.4.1
+    "@react-types/radio": ^3.2.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 845f6d42f992ee7048852be2b95c86b0a501d62301c09af49f1f395d50b4e0db6f35a79441cc308e923c6a6e2d490c9d16f7868fc7d078567055a180265881da
+  languageName: node
+  linkType: hard
+
+"@react-aria/select@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "@react-aria/select@npm:3.7.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-aria/i18n": ^3.4.1
+    "@react-aria/interactions": ^3.9.1
+    "@react-aria/label": ^3.3.1
+    "@react-aria/listbox": ^3.5.1
+    "@react-aria/menu": ^3.5.1
+    "@react-aria/selection": ^3.9.1
+    "@react-aria/utils": ^3.13.1
+    "@react-aria/visually-hidden": ^3.3.1
+    "@react-stately/select": ^3.2.1
+    "@react-types/button": ^3.5.1
+    "@react-types/select": ^3.6.1
+    "@react-types/shared": ^3.13.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: e5f7bfc80978e0de4dd1c0659efb60d96906df1202d62ee3d81f56e4b81f04c5ceebfef42c6bd0b25e4e99b36082f44dde50549d638e7bde0b874300a6599077
   languageName: node
   linkType: hard
 

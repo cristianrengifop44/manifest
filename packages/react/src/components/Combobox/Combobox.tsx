@@ -12,6 +12,7 @@ import { useComboBoxState } from '@react-stately/combobox';
 import { useFilter } from '@react-aria/i18n';
 import { useFocusRing } from '@react-aria/focus';
 import { useHover } from '@react-aria/interactions';
+import { useOverlayPosition } from '@react-aria/overlays';
 
 /**
  * -----------------------------------------------------------------------------------------------
@@ -21,12 +22,9 @@ import { useHover } from '@react-aria/interactions';
 
 type ComboboxAriaProps<T extends object = object> = AriaComboBoxProps<T>;
 type ComboboxElement = React.ElementRef<'div'>;
-type ComboboxElementNativeProps = Omit<
-  React.ComponentPropsWithoutRef<'div'>,
-  keyof ComboboxAriaProps
->;
+type ComboboxNativeProps = Omit<React.ComponentPropsWithoutRef<'div'>, keyof ComboboxAriaProps>;
 
-interface ComboboxProps extends ComboboxElementNativeProps, ComboboxAriaProps {
+interface ComboboxProps extends ComboboxNativeProps, ComboboxAriaProps {
   /**
    * Theme aware style object.
    */
@@ -74,14 +72,13 @@ const Combobox = React.forwardRef<ComboboxElement, ComboboxProps>((props, forwar
     labelProps: labelPropsProp = {},
     validationState,
     size = 'medium',
-    startIcon: startIconProp,
+    startIcon,
   } = props;
 
   const isInvalid = validationState === 'invalid';
 
   const [popoverWidth, setPopoverWidth] = React.useState<number>(0);
 
-  const iconRef = React.useRef<HTMLElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const listBoxRef = React.useRef<HTMLDivElement>(null);
   const popoverRef = React.useRef<HTMLDivElement>(null);
@@ -106,11 +103,15 @@ const Combobox = React.forwardRef<ComboboxElement, ComboboxProps>((props, forwar
   const { hoverProps, isHovered } = useHover({ isDisabled });
   const { isFocusVisible, focusProps } = useFocusRing({ autoFocus });
 
-  let startIcon = startIconProp;
-
-  if (startIcon) {
-    startIcon = React.cloneElement(startIcon, { ref: iconRef });
-  }
+  const { overlayProps: positionProps } = useOverlayPosition({
+    targetRef: inputRef,
+    overlayRef: popoverRef,
+    scrollRef: listBoxRef,
+    placement: 'bottom',
+    shouldFlip: true,
+    isOpen: state.isOpen,
+    onClose: state.close,
+  });
 
   const { className } = comboboxStyles({
     hasStartIcon: !!startIcon,
@@ -150,7 +151,7 @@ const Combobox = React.forwardRef<ComboboxElement, ComboboxProps>((props, forwar
         )}
 
         <input
-          {...(mergeProps(inputProps, focusProps, hoverProps) as ComboboxElementNativeProps)}
+          {...(mergeProps(inputProps, focusProps, hoverProps) as ComboboxNativeProps)}
           className="manifest-combobox--input"
           ref={inputRef}
         />
@@ -161,6 +162,7 @@ const Combobox = React.forwardRef<ComboboxElement, ComboboxProps>((props, forwar
 
         {state.isOpen && (
           <Popover
+            {...positionProps}
             className="manifest-combobox--popover"
             css={{ minWidth: popoverWidth, width: popoverWidth }}
             isOpen={state.isOpen}
@@ -170,7 +172,6 @@ const Combobox = React.forwardRef<ComboboxElement, ComboboxProps>((props, forwar
             <LisBoxBase.ListBox
               {...(listBoxProps as LisBoxBase.ListBoxProps)}
               className="manifest-combobox--list-box"
-              css={{ padding: '$small' }}
               disallowEmptySelection
               ref={listBoxRef}
               state={state}
