@@ -1,43 +1,50 @@
 import { css } from '../../styles';
 
-export const useListBoxStyles = css({
+export const useDropdownStyles = css({
   boxSizing: 'border-box',
+  display: 'block',
+  listStyleType: 'none',
   margin: 0,
-  outline: 'none',
-  padding: 0,
-  position: 'relative',
+  padding: '$small',
+  overflow: 'auto',
+  userSelect: 'none',
+
+  '& > .manifest-separator': {
+    mx: '-$small',
+    my: '$small',
+  },
 });
 
-export const useListItemBoxStyles = css({
-  $$listBoxItemBackgroundColor: 'transparent',
+export const useDropdownItemBoxStyles = css({
+  $$dropdownItemBackgroundColor: 'transparent',
 
   alignItems: 'center',
   backgroundColor: '$$listBoxItemBackgroundColor',
   borderRadius: '$small',
   boxSizing: 'border-box',
   color: '$text-primary',
-  cursor: 'pointer',
+  cursor: 'default',
   display: 'flex',
   outline: 'none',
   padding: '$small',
   position: 'relative',
 
-  '.manifest-listbox-item--icon': {
+  '.manifest-dropdown-item--icon': {
     alignSelf: 'center',
     color: '$text-secondary',
     display: 'inline-flex',
     flexShrink: 0,
   },
 
-  '.manifest-listbox-item--icon__end': {
+  '.manifest-dropdown-item--icon__end': {
     marginLeft: '$small',
   },
 
-  '.manifest-listbox-item--icon__start': {
+  '.manifest-dropdown-item--icon__start': {
     marginRight: '$small',
   },
 
-  '.manifest-listbox-item--text': {
+  '.manifest-dropdown-item--text': {
     display: 'block',
     flex: '1 1 0%',
     overflow: 'hidden',
@@ -55,35 +62,36 @@ export const useListItemBoxStyles = css({
     },
     isFocused: {
       true: {
-        $$listBoxItemBackgroundColor: '$colors$background-secondary',
+        $$dropdownItemBackgroundColor: '$colors$background-secondary',
       },
     },
     isHovered: {
       true: {
-        $$listBoxItemBackgroundColor: '$colors$background-secondary',
+        $$dropdownItemBackgroundColor: '$colors$background-secondary',
       },
     },
     isPressed: {
       true: {
-        $$listBoxItemBackgroundColor: '$colors$background-secondary',
+        $$dropdownItemBackgroundColor: '$colors$background-secondary',
       },
     },
     isSelected: {
       true: {
-        $$listBoxItemBackgroundColor: '$colors$background-secondary',
+        $$dropdownItemBackgroundColor: '$colors$background-secondary',
       },
     },
   },
 });
 
-export const useListBoxSectionStyles = css({
-  boxSizing: 'border-box',
-  margin: 0,
-  minWidth: 0,
-
+export const useDropdownSectionStyles = css({
   '.manifest-listbox-section--group': {
+    boxSizing: 'border-box',
+    display: 'block',
+    listStyleType: 'none',
     margin: 0,
-    padding: 0,
+    padding: '$small',
+    overflow: 'auto',
+    userSelect: 'none',
   },
 
   '.manifest-listbox-section--label': {

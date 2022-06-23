@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CSS, cx, useAvatarStyles } from './styles';
-import { useImage } from '../../hooks';
+import { useLayoutEffect } from '@react-aria/utils';
 
 /**
  * -----------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ const Avatar = React.forwardRef<AvatarElement, AvatarProps>((props, forwardedRef
     ...other
   } = props;
 
-  const status = useImage({ src });
+  const status = useAvatar({ src });
 
   const { className } = useAvatarStyles({ css, size });
 
@@ -65,5 +65,56 @@ if (__DEV__) {
 
 Avatar.toString = () => '.manifest-avatar';
 
-export { Avatar };
-export type { AvatarProps };
+/**
+ * -----------------------------------------------------------------------------------------------
+ * useAvatar
+ * -----------------------------------------------------------------------------------------------
+ */
+
+interface UseAvatarProps {
+  /**
+   * The image `src` attribute
+   */
+  src?: string;
+}
+
+type ImageStatus = 'error' | 'pending' | 'loaded' | 'loading';
+
+function useAvatar(props: UseAvatarProps) {
+  const { src } = props;
+
+  const [status, setStatus] = React.useState<ImageStatus>('pending');
+
+  const mountedRef = React.useRef(false);
+
+  const handleStatusChange = React.useCallback((newStatus: ImageStatus) => {
+    if (!mountedRef.current) return;
+
+    setStatus(newStatus);
+  }, []);
+
+  React.useEffect(() => {
+    handleStatusChange(src ? 'loading' : 'pending');
+  }, [handleStatusChange, src]);
+
+  useLayoutEffect(() => {
+    if (!src) return;
+
+    mountedRef.current = true;
+
+    const image = new Image();
+
+    image.src = src;
+    image.onload = () => handleStatusChange('loaded');
+    image.onerror = () => handleStatusChange('error');
+
+    return () => {
+      mountedRef.current = false;
+    };
+  }, [handleStatusChange, src]);
+
+  return status;
+}
+
+export { Avatar, useAvatar };
+export type { AvatarProps, UseAvatarProps };

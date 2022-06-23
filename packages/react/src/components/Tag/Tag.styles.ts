@@ -1,6 +1,6 @@
 import { styled } from '../../styles';
 import { Icon } from '../Icon';
-import { IconButton } from '../IconButton';
+import { IconButton } from '../Button';
 import { Typography } from '../Typography';
 
 export const StyledTag = styled('div', {

@@ -7,8 +7,6 @@ export * from './components/CssBaseline';
 export * from './components/Dropdown';
 export * from './components/Flex';
 export * from './components/Icon';
-export * from './components/IconButton';
-export * from './components/Input';
 export * from './components/Link';
 export * from './components/Pagination';
 export * from './components/Popover';
@@ -21,6 +19,4 @@ export * from './components/Toggle';
 export * from './components/Typography';
 export * from './components/VisuallyHidden';
 
-export * from './hooks';
 export * from './styles';
-export * from './utils';

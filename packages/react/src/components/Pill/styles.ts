@@ -1,30 +1,6 @@
-import { styled } from '../../styles';
-import { Typography } from '../Typography';
+import { css } from '../../styles';
 
-export const StyledIcon = styled('span', {
-  alignItems: 'center',
-  borderRadius: '$full',
-  color: '$white',
-  display: 'flex',
-  fontSize: '$medium',
-  justifyContent: 'center',
-  size: 20,
-
-  '> .material-icons': {
-    fontSize: '$medium',
-  },
-});
-
-export const StyledText = styled(Typography, {
-  borderBottomRightRadius: '$full',
-  borderTopRightRadius: '$full',
-  left: 24,
-  padding: '3px 6px 3px 2px',
-  position: 'absolute',
-  width: 'max-content',
-});
-
-export const StyledPill = styled('div', {
+export const usePillStyles = css({
   $$backgroundColor: 'tranparent',
 
   alignItems: 'center',
@@ -35,8 +11,28 @@ export const StyledPill = styled('div', {
   padding: '2px',
   position: 'relative',
 
-  [`& ${StyledText}`]: {
+  '.manifest-pill--icon': {
+    alignItems: 'center',
+    borderRadius: '$full',
+    color: '$white',
+    display: 'flex',
+    fontSize: '$medium',
+    justifyContent: 'center',
+    size: 20,
+
+    '> .material-icons': {
+      fontSize: '$medium',
+    },
+  },
+
+  '.manifest-pill--text': {
     backgroundColor: '$$backgroundColor',
+    borderBottomRightRadius: '$full',
+    borderTopRightRadius: '$full',
+    left: 24,
+    padding: '3px 6px 3px 2px',
+    position: 'absolute',
+    width: 'max-content',
   },
 
   variants: {
@@ -44,22 +40,22 @@ export const StyledPill = styled('div', {
       indigo: {
         $$backgroundColor: '$colors$palette-indigo-50',
 
-        [`& ${StyledText}`]: {
+        '.manifest-pill--text': {
           color: '$palette-indigo-700',
         },
 
-        [`& ${StyledIcon}`]: {
+        '.manifest-pill--icon': {
           backgroundColor: '$palette-indigo-700',
         },
       },
       red: {
         $$backgroundColor: '$colors$palette-red-50',
 
-        [`& ${StyledText}`]: {
+        '.manifest-pill--text': {
           color: '$palette-red-600',
         },
 
-        [`& ${StyledIcon}`]: {
+        '.manifest-pill--icon': {
           backgroundColor: '$palette-red-600',
         },
       },
@@ -76,3 +72,6 @@ export const StyledPill = styled('div', {
     colorScheme: 'indigo',
   },
 });
+
+export type { CSS } from '../../styles';
+export { cx } from '../../styles';

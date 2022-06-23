@@ -1,7 +1,6 @@
 import { css } from '../../styles';
-import { Typography } from '../Typography';
 
-export const formControlStyles = css({
+export const useFormControlStyles = css({
   $$helperTextColor: '$colors$text-tertiary',
 
   border: 0,

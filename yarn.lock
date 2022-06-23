@@ -1541,7 +1541,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.10.4, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.16.0, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.17.2, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.0, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.6.2, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.10.4, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.17.2, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.0, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.6.2, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
   version: 7.18.3
   resolution: "@babel/runtime@npm:7.18.3"
   dependencies:
@@ -3112,20 +3112,33 @@ __metadata:
     "@radix-ui/react-visually-hidden": ^0.1.4
     "@react-aria/button": ^3.5.1
     "@react-aria/calendar": ^3.0.0
+    "@react-aria/checkbox": ^3.4.1
     "@react-aria/combobox": ^3.3.1
+    "@react-aria/dialog": ^3.2.1
     "@react-aria/focus": ^3.6.1
     "@react-aria/i18n": ^3.4.1
     "@react-aria/interactions": ^3.9.1
+    "@react-aria/label": ^3.3.1
     "@react-aria/listbox": ^3.5.1
+    "@react-aria/menu": ^3.5.1
+    "@react-aria/overlays": ^3.9.1
+    "@react-aria/separator": ^3.2.1
+    "@react-aria/ssr": ^3.2.0
+    "@react-aria/switch": ^3.2.1
+    "@react-aria/tooltip": ^3.2.1
     "@react-aria/utils": ^3.13.1
     "@react-aria/visually-hidden": ^3.3.1
     "@react-stately/calendar": ^3.0.0
     "@react-stately/collections": ^3.4.1
     "@react-stately/combobox": ^3.1.1
-    "@react-types/calendar": ^3.0.0
+    "@react-stately/menu": ^3.3.1
+    "@react-stately/overlays": ^3.3.1
+    "@react-stately/radio": ^3.4.1
+    "@react-stately/toggle": ^3.3.1
+    "@react-stately/tooltip": ^3.1.1
+    "@react-stately/utils": ^3.5.0
     "@stitches/react": ^1.2.8
     clsx: ^1.1.1
-    dom-lib: ^3.1.2
     react: ^18.1.0
     react-dom: ^18.1.0
   peerDependencies:
@@ -3927,6 +3940,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-aria/checkbox@npm:^3.4.1":
+  version: 3.4.1
+  resolution: "@react-aria/checkbox@npm:3.4.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-aria/label": ^3.3.1
+    "@react-aria/toggle": ^3.3.1
+    "@react-aria/utils": ^3.13.1
+    "@react-stately/checkbox": ^3.1.1
+    "@react-stately/toggle": ^3.3.1
+    "@react-types/checkbox": ^3.3.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: fbb38eae285199e195e9e5dbad590db6afef519de5c4ad33269ce9b1c223345cf114396bee2676a3e2adade8fac125bdf3f89b476e8c3352c41771c4aec08f44
+  languageName: node
+  linkType: hard
+
 "@react-aria/combobox@npm:^3.3.1":
   version: 3.3.1
   resolution: "@react-aria/combobox@npm:3.3.1"
@@ -3951,6 +3981,21 @@ __metadata:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 3701c2cd709af5b76f7ac55d677875b80a731cbe4cb4bee6105a0868a80c55610fa84a239987409999cf96bf16d09b6c381755700d19fa8ad2e450f682efb3d0
+  languageName: node
+  linkType: hard
+
+"@react-aria/dialog@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@react-aria/dialog@npm:3.2.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-aria/focus": ^3.6.1
+    "@react-aria/utils": ^3.13.1
+    "@react-stately/overlays": ^3.3.1
+    "@react-types/dialog": ^3.4.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 09be3c3a315a7de5afd7c63afb4116420feb3ec5c27a45786f51069071b23b5849bba361934f07f573ea00c6f8c5bd965095bfe235ea991b5ed52ff0d4adca30
   languageName: node
   linkType: hard
 
@@ -4105,6 +4150,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-aria/separator@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@react-aria/separator@npm:3.2.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-aria/utils": ^3.13.1
+    "@react-types/shared": ^3.13.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: ced0c549848dd15f03f174cfd1819c9cd0984566198e71d7ed85425a437560b04b149e2a60a7fb749dd36f8b06da87fd10b2636d3af5d9a8509c759caa9fc2c8
+  languageName: node
+  linkType: hard
+
 "@react-aria/ssr@npm:^3.2.0":
   version: 3.2.0
   resolution: "@react-aria/ssr@npm:3.2.0"
@@ -4113,6 +4171,20 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 30468b436f9d56636eb3fb89cbbbf861c55ad841e255e529d225a0efd9c23628badaee72c42ab3870b5f17a9d5b5163564a64e9b928565230a090cb4f7de23bf
+  languageName: node
+  linkType: hard
+
+"@react-aria/switch@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@react-aria/switch@npm:3.2.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-aria/toggle": ^3.3.1
+    "@react-stately/toggle": ^3.3.1
+    "@react-types/switch": ^3.2.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: d693548f352085fbf64f4616ba2f925f473fb0367d2e2d316c2859ae7986acc8a7b017143de71d93ec30dff3994cf1326e2c597b9eaf3d910018e0164f242ecb
   languageName: node
   linkType: hard
 
@@ -4129,6 +4201,41 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 6d9b1f5b9fa2f560799496c50fde09892b4ae03f8423e14b866af79640a930845220f340c3ec0a79de094575bf204ae0370f21074b2d2955e4f4ca6e4c9d1270
+  languageName: node
+  linkType: hard
+
+"@react-aria/toggle@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "@react-aria/toggle@npm:3.3.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-aria/focus": ^3.6.1
+    "@react-aria/interactions": ^3.9.1
+    "@react-aria/utils": ^3.13.1
+    "@react-stately/toggle": ^3.3.1
+    "@react-types/checkbox": ^3.3.1
+    "@react-types/shared": ^3.13.1
+    "@react-types/switch": ^3.2.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 8ce8947137c26bff1866c9943f214d87c65e5d9b06789a31e4f584bbcfe6c21ab7133091be587aa02faae0705abae91ff9122cdd4371434c8f220939f4bb130b
+  languageName: node
+  linkType: hard
+
+"@react-aria/tooltip@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@react-aria/tooltip@npm:3.2.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-aria/focus": ^3.6.1
+    "@react-aria/interactions": ^3.9.1
+    "@react-aria/utils": ^3.13.1
+    "@react-stately/tooltip": ^3.1.1
+    "@react-types/shared": ^3.13.1
+    "@react-types/tooltip": ^3.2.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: adff1dfe63c090a869c51ff15b7752f732561127b0d67292f0b7217e09f8bca67f7318475b5b23a056a84304a4cdc20abc1db495b3f36e01911610e6d3a0a033
   languageName: node
   linkType: hard
 
@@ -4174,6 +4281,20 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: c0316ae9859932266610450bd5d16d2c1d44e9054b1eb7f0022afbb689506de89af5664fa92c8ae9bc2be857211186995d293a2db0e2a9540f50b1622ffdd065
+  languageName: node
+  linkType: hard
+
+"@react-stately/checkbox@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@react-stately/checkbox@npm:3.1.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-stately/toggle": ^3.3.1
+    "@react-stately/utils": ^3.5.0
+    "@react-types/checkbox": ^3.3.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: cbc48c76215f9b34277e5037e48b32901e02871dfd91cce1e44e5dec2ca64850b3a65ff42be9e0710021dd7fe18f86fd7296de59d2f7a85b23efe1b584dd0fac
   languageName: node
   linkType: hard
 
@@ -4264,6 +4385,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-stately/radio@npm:^3.4.1":
+  version: 3.4.1
+  resolution: "@react-stately/radio@npm:3.4.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-stately/utils": ^3.5.0
+    "@react-types/radio": ^3.2.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: bebde1b5165b6042aaced05d8cd1d89cb0bb8b52a3755388fbc3ab9428b74cefbbdbd91c2e46c50554266fff79b5658eec57e720a74fe4cf0a701c3d5e4fb2e9
+  languageName: node
+  linkType: hard
+
 "@react-stately/select@npm:^3.2.1":
   version: 3.2.1
   resolution: "@react-stately/select@npm:3.2.1"
@@ -4307,6 +4441,20 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 7029b72e95a40e2ffbe1a97ba35c7b7fa0a9e41d6f5090a3f6ceda6d944450ba6b9be1fbf7b860b1fd671bccdb1814269cb5b3f2ab27eadacbe78fe6350b6d1b
+  languageName: node
+  linkType: hard
+
+"@react-stately/tooltip@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@react-stately/tooltip@npm:3.1.1"
+  dependencies:
+    "@babel/runtime": ^7.6.2
+    "@react-stately/overlays": ^3.3.1
+    "@react-stately/utils": ^3.5.0
+    "@react-types/tooltip": ^3.2.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: d61b1ad384defd7e75de5f187ddc290cca8dd6fec07846050b609a0258b52dd113e23df6220bcfca70c9f4ce8633287d929354a2885a1342b11e50fcfdb84bd2
   languageName: node
   linkType: hard
 
@@ -4407,6 +4555,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-types/dialog@npm:^3.4.1":
+  version: 3.4.1
+  resolution: "@react-types/dialog@npm:3.4.1"
+  dependencies:
+    "@react-types/overlays": ^3.6.1
+    "@react-types/shared": ^3.13.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: fcd4a7cad671a2702df703a514fb1ff6b75d857aa8d6ead8649539daed35dd44a6abc8dafd131e5325b1cbc7511b5521e2a0cdbc005a9e6e04a25500ac3cb9bc
+  languageName: node
+  linkType: hard
+
 "@react-types/grid@npm:^3.1.0":
   version: 3.1.1
   resolution: "@react-types/grid@npm:3.1.1"
@@ -4463,6 +4623,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-types/radio@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@react-types/radio@npm:3.2.1"
+  dependencies:
+    "@react-types/shared": ^3.13.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: d367ca32d49c8520472133f7d0523011e3d06bf3066a7e8edca18e6d0517f66ba62fc9d963f5feac9a307205041a298bef905ae31c2009cd7e3601763c650c01
+  languageName: node
+  linkType: hard
+
 "@react-types/select@npm:^3.6.1":
   version: 3.6.1
   resolution: "@react-types/select@npm:3.6.1"
@@ -4480,6 +4651,18 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 61eb674df29502292f7664aee55fa230609310a6cb92b5c07052155a50772e5407464a898c1dbaf6cbff7018ed26fa83045f78af557fbdc0a9c3df4994434b2e
+  languageName: node
+  linkType: hard
+
+"@react-types/switch@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@react-types/switch@npm:3.2.1"
+  dependencies:
+    "@react-types/checkbox": ^3.3.1
+    "@react-types/shared": ^3.13.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: a952587f5ae56627944d7c790500c438332a4d49b689f0ac5fa99764735890d46cf9e88c67f9e62ad383212d3b4331af903cd5ee3595c8deb7f55ecfa49b92a2
   languageName: node
   linkType: hard
 
@@ -4503,6 +4686,18 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 6195703acbca6a60ca284239a23be6853ab4f9e220b5f3c8e2e4fb82abfaa6257f996e1a427939771dc4152c30728057b5e4716e5763b2f1c1bb08c892da87a7
+  languageName: node
+  linkType: hard
+
+"@react-types/tooltip@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@react-types/tooltip@npm:3.2.1"
+  dependencies:
+    "@react-types/overlays": ^3.6.1
+    "@react-types/shared": ^3.13.1
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 0e43f4a8e33392856a71eeed3a06885fe6e7e0bf6cc3630fa320b575ea5fe32741553934bc02bae8e0c609e3109c2dba42231bb14208b9d876097cbeb349d0cf
   languageName: node
   linkType: hard
 
@@ -5868,9 +6063,50 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc-node/core@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "@swc-node/core@npm:1.9.0"
+  dependencies:
+    "@swc/core": ^1.2.172
+  checksum: 6fb86ce83456443ecd1f5be423fcaa72a144dbc925b4db5a2213179be93c5bfb4d7d1572c05cd9052a2f06612285e1562ccb1f9f77a8c5829dfb46c0e3fa84a1
+  languageName: node
+  linkType: hard
+
+"@swc-node/register@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "@swc-node/register@npm:1.5.1"
+  dependencies:
+    "@swc-node/core": ^1.9.0
+    "@swc-node/sourcemap-support": ^0.2.0
+    colorette: ^2.0.16
+    debug: ^4.3.4
+    pirates: ^4.0.5
+    tslib: ^2.4.0
+  peerDependencies:
+    typescript: ">= 4.3"
+  checksum: d4e4442e850bfd2416fcdf9b4a22afdcacde5bbb7c0ff21f5a3336ea3211c046805d7fadf8fbec1ab9f65b64eea07ef91cdc5d91792ba9c9045098bf8ba4c096
+  languageName: node
+  linkType: hard
+
+"@swc-node/sourcemap-support@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@swc-node/sourcemap-support@npm:0.2.0"
+  dependencies:
+    source-map-support: ^0.5.21
+  checksum: b202ada28394f1b4127a98f3ad3cde9e46f0a3b1e9e80580c2ac7fd52d246b3bfe78dc8fc3e1ceb96bf4fc572687cc5d1cfc67ceb44aefb0fceaad40684d27c9
+  languageName: node
+  linkType: hard
+
 "@swc/core-android-arm-eabi@npm:1.2.196":
   version: 1.2.196
   resolution: "@swc/core-android-arm-eabi@npm:1.2.196"
+  conditions: os=android & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@swc/core-android-arm-eabi@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-android-arm-eabi@npm:1.2.204"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
@@ -5882,9 +6118,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc/core-android-arm64@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-android-arm64@npm:1.2.204"
+  conditions: os=android & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@swc/core-darwin-arm64@npm:1.2.196":
   version: 1.2.196
   resolution: "@swc/core-darwin-arm64@npm:1.2.196"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@swc/core-darwin-arm64@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-darwin-arm64@npm:1.2.204"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -5896,9 +6146,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc/core-darwin-x64@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-darwin-x64@npm:1.2.204"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
 "@swc/core-freebsd-x64@npm:1.2.196":
   version: 1.2.196
   resolution: "@swc/core-freebsd-x64@npm:1.2.196"
+  conditions: os=freebsd & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core-freebsd-x64@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-freebsd-x64@npm:1.2.204"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
@@ -5910,9 +6174,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc/core-linux-arm-gnueabihf@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.2.204"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
 "@swc/core-linux-arm64-gnu@npm:1.2.196":
   version: 1.2.196
   resolution: "@swc/core-linux-arm64-gnu@npm:1.2.196"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm64-gnu@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.2.204"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
@@ -5924,9 +6202,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc/core-linux-arm64-musl@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-linux-arm64-musl@npm:1.2.204"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
 "@swc/core-linux-x64-gnu@npm:1.2.196":
   version: 1.2.196
   resolution: "@swc/core-linux-x64-gnu@npm:1.2.196"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-x64-gnu@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-linux-x64-gnu@npm:1.2.204"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
@@ -5938,9 +6230,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc/core-linux-x64-musl@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-linux-x64-musl@npm:1.2.204"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
 "@swc/core-win32-arm64-msvc@npm:1.2.196":
   version: 1.2.196
   resolution: "@swc/core-win32-arm64-msvc@npm:1.2.196"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-arm64-msvc@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.2.204"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
@@ -5952,10 +6258,74 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc/core-win32-ia32-msvc@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.2.204"
+  conditions: os=win32 & cpu=ia32
+  languageName: node
+  linkType: hard
+
 "@swc/core-win32-x64-msvc@npm:1.2.196":
   version: 1.2.196
   resolution: "@swc/core-win32-x64-msvc@npm:1.2.196"
   conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core-win32-x64-msvc@npm:1.2.204":
+  version: 1.2.204
+  resolution: "@swc/core-win32-x64-msvc@npm:1.2.204"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@swc/core@npm:^1.2.172":
+  version: 1.2.204
+  resolution: "@swc/core@npm:1.2.204"
+  dependencies:
+    "@swc/core-android-arm-eabi": 1.2.204
+    "@swc/core-android-arm64": 1.2.204
+    "@swc/core-darwin-arm64": 1.2.204
+    "@swc/core-darwin-x64": 1.2.204
+    "@swc/core-freebsd-x64": 1.2.204
+    "@swc/core-linux-arm-gnueabihf": 1.2.204
+    "@swc/core-linux-arm64-gnu": 1.2.204
+    "@swc/core-linux-arm64-musl": 1.2.204
+    "@swc/core-linux-x64-gnu": 1.2.204
+    "@swc/core-linux-x64-musl": 1.2.204
+    "@swc/core-win32-arm64-msvc": 1.2.204
+    "@swc/core-win32-ia32-msvc": 1.2.204
+    "@swc/core-win32-x64-msvc": 1.2.204
+  dependenciesMeta:
+    "@swc/core-android-arm-eabi":
+      optional: true
+    "@swc/core-android-arm64":
+      optional: true
+    "@swc/core-darwin-arm64":
+      optional: true
+    "@swc/core-darwin-x64":
+      optional: true
+    "@swc/core-freebsd-x64":
+      optional: true
+    "@swc/core-linux-arm-gnueabihf":
+      optional: true
+    "@swc/core-linux-arm64-gnu":
+      optional: true
+    "@swc/core-linux-arm64-musl":
+      optional: true
+    "@swc/core-linux-x64-gnu":
+      optional: true
+    "@swc/core-linux-x64-musl":
+      optional: true
+    "@swc/core-win32-arm64-msvc":
+      optional: true
+    "@swc/core-win32-ia32-msvc":
+      optional: true
+    "@swc/core-win32-x64-msvc":
+      optional: true
+  bin:
+    swcx: run_swcx.js
+  checksum: f5bdab0edaca484eec50892564da15cca08a69bad25ecf570c4bd6939d305c79d0c57d7155bf09d4dcc2307e0faa22d90d61b732152de73cd54ac2d478616ad4
   languageName: node
   linkType: hard
 
@@ -10282,15 +10652,6 @@ __metadata:
     "@babel/runtime": ^7.8.7
     csstype: ^3.0.2
   checksum: 863ba9e086f7093df3376b43e74ce4422571d404fc9828bf2c56140963d5edf0e56160f9b2f3bb61b282c07f8fc8134f023c98fd684bddcb12daf7b0f14d951c
-  languageName: node
-  linkType: hard
-
-"dom-lib@npm:^3.1.2":
-  version: 3.1.2
-  resolution: "dom-lib@npm:3.1.2"
-  dependencies:
-    "@babel/runtime": ^7.16.0
-  checksum: c0252ef07cb497c4b1f42b47af59f5493c4fe302a9da0b47c8f5a397957ee1833e027c588b95f5078cb413b30eeba32aed527e6cf9ccebf7a196258593b172d3
   languageName: node
   linkType: hard
 
@@ -15123,6 +15484,7 @@ __metadata:
     "@storybook/core": ^6.5.4
     "@storybook/manager-webpack5": ^6.5.4
     "@storybook/react": ^6.5.4
+    "@swc-node/register": ^1.5.1
     "@testing-library/jest-dom": ^5.16.4
     "@testing-library/react": ^13.2.0
     "@testing-library/user-event": ^14.2.0
@@ -18963,7 +19325,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-support@npm:^0.5.16, source-map-support@npm:~0.5.12, source-map-support@npm:~0.5.20":
+"source-map-support@npm:^0.5.16, source-map-support@npm:^0.5.21, source-map-support@npm:~0.5.12, source-map-support@npm:~0.5.20":
   version: 0.5.21
   resolution: "source-map-support@npm:0.5.21"
   dependencies:
@@ -20082,7 +20444,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0":
+"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.4.0":
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
   checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113

@@ -1,17 +1,32 @@
 import type { ManifestProps } from '../../types';
 import * as React from 'react';
-import { cx, VariantProps } from '../../styles';
-import { StyledIcon, StyledPill, StyledText } from './Pill.styles';
+import { CSS, cx, usePillStyles } from './styles';
 import { useTooltip, useTooltipTrigger } from '@react-aria/tooltip';
 import { mergeProps } from '@react-aria/utils';
+import { Typography } from '../Typography';
 import { useOverlayPosition } from '@react-aria/overlays';
 import { useTooltipTriggerState } from '@react-stately/tooltip';
 
-type PillElement = React.ElementRef<typeof StyledPill>;
-type PillNativeProps = React.ComponentPropsWithoutRef<typeof StyledPill>;
-type PillVariantProps = VariantProps<typeof StyledPill>;
+/**
+ * -----------------------------------------------------------------------------------------------
+ * Pill
+ * -----------------------------------------------------------------------------------------------
+ */
 
-export interface PillProps extends ManifestProps, PillNativeProps, PillVariantProps {
+type PillElement = React.ElementRef<'div'>;
+type PillNativeProps = React.ComponentPropsWithoutRef<'div'>;
+
+interface PillProps extends PillNativeProps {
+  /**
+   * The color scheme of the pill
+   *
+   * @default 'indigo'
+   */
+  colorScheme?: 'indigo' | 'red';
+  /**
+   * Theme aware style object.
+   */
+  css?: CSS;
   /**
    * The icon to render in the pill.
    */
@@ -26,8 +41,16 @@ export interface PillProps extends ManifestProps, PillNativeProps, PillVariantPr
   label?: React.ReactNode;
 }
 
-export const Pill = React.forwardRef<PillElement, PillProps>((props, forwaredRef) => {
-  const { as, className, css, icon, isCollapsed = false, label, ...other } = props;
+const Pill = React.forwardRef<PillElement, PillProps>((props, forwaredRef) => {
+  const {
+    className: classNameProp,
+    colorScheme = 'indigo',
+    css,
+    icon,
+    isCollapsed = false,
+    label,
+    ...other
+  } = props;
 
   const overlayRef = React.useRef<HTMLDivElement>(null);
   const triggerRef = React.useRef<HTMLDivElement>(null);
@@ -50,28 +73,33 @@ export const Pill = React.forwardRef<PillElement, PillProps>((props, forwaredRef
 
   const isOpen = isCollapsed ? state.isOpen : true;
 
+  const { className } = usePillStyles({ colorScheme, css, isOpen });
+
   return (
-    <StyledPill
-      {...other}
-      as={as}
-      className={cx('manifest-pill', className)}
-      css={css}
-      isOpen={isOpen}
-      ref={forwaredRef}
-    >
+    <div {...other} className={cx('manifest-pill', className, classNameProp)} ref={forwaredRef}>
       {icon && (
-        <StyledIcon {...triggerProps} ref={triggerRef}>
+        <span {...triggerProps} className="manifest-pill--icon" ref={triggerRef}>
           {icon}
-        </StyledIcon>
+        </span>
       )}
       {isOpen && (
-        <StyledText
+        <Typography
           {...mergeProps(contentProps, tooltipProps, isCollapsed ? positionProps : {})}
+          className="manifest-pill--text"
           variant="captionBold"
         >
           {label}
-        </StyledText>
+        </Typography>
       )}
-    </StyledPill>
+    </div>
   );
 });
+
+if (__DEV__) {
+  Pill.displayName = 'Pill';
+}
+
+Pill.toString = () => '.manifest-pill';
+
+export { Pill };
+export type { PillProps };

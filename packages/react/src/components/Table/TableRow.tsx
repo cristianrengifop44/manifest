@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cx, VariantProps } from '../../styles';
-import { chainCallbacks } from '../../utils';
+import { chain } from '@react-aria/utils';
 import { StyledTableRow } from './Table.styles';
 import { useTableContext } from './Table.context';
 
@@ -32,8 +32,8 @@ export const TableRow = React.forwardRef<TableRowElement, TableRowProps>((props,
       {...other}
       className={cx('manifestui-table--row', className)}
       isHovered={isHovered}
-      onMouseEnter={chainCallbacks(handleMouseEnter, onMouseEnter, onMouseEnterProp)}
-      onMouseLeave={chainCallbacks(() => setIsHovered(false), onMouseLeave, onMouseLeaveProp)}
+      onMouseEnter={chain(handleMouseEnter, onMouseEnter, onMouseEnterProp)}
+      onMouseLeave={chain(() => setIsHovered(false), onMouseLeave, onMouseLeaveProp)}
       ref={forwardedRef}
     />
   );

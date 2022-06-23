@@ -2,7 +2,6 @@ import * as React from 'react';
 import { StyledSelect, StyledSelectIcon, StyledSelectWrapper } from './Select.styles';
 import { cx, VariantProps } from '../../styles';
 import { ManifestProps } from '../../types';
-import { useFormControl } from '../FormControl';
 import { Icon } from '../Icon';
 import { useHover } from '@react-aria/interactions';
 
@@ -37,16 +36,14 @@ export interface SelectProps
 }
 
 export const Select = React.forwardRef<SelectElement, SelectProps>((props, forwardedRef) => {
-  const formControl = useFormControl();
-
   const {
     children,
     className,
-    id = formControl?.id,
-    isDisabled = formControl?.isDisabled,
-    isInvalid = formControl?.isInvalid,
-    isReadOnly = formControl?.isReadOnly,
-    isRequired = formControl?.isReadOnly,
+    id,
+    isDisabled,
+    isInvalid,
+    isReadOnly,
+    isRequired,
     startIcon,
     size = 'medium',
     ...other
@@ -75,7 +72,6 @@ export const Select = React.forwardRef<SelectElement, SelectProps>((props, forwa
 
       <StyledSelect
         {...other}
-        aria-describedby={formControl?.hasHelperText ? formControl?.helperTextId : undefined}
         aria-invalid={isInvalid ? true : undefined}
         aria-readonly={isReadOnly || isDisabled ? true : undefined}
         className={cx('manifest-input', className)}

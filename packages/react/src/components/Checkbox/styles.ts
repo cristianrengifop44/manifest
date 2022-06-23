@@ -1,6 +1,6 @@
 import { css } from '../../styles';
 
-export const checkboxStyles = css({
+export const useCheckboxStyles = css({
   $$checkboxBackgroundColor: '$colors$background-primary',
   $$checkboxBorderColor: '$colors$palette-grey-500',
 

@@ -1,8 +1,7 @@
 import * as React from 'react';
+import { chain, mergeRefs } from '@react-aria/utils';
 import { cx, VariantProps } from '../../styles';
-import { chainCallbacks } from '../../utils';
 import { StyledTableCell } from './Table.styles';
-import { useMergedRefs } from '../../hooks';
 
 type TableCellElement = React.ElementRef<typeof StyledTableCell>;
 type TableCellNativeProps = React.ComponentPropsWithoutRef<typeof StyledTableCell>;
@@ -34,8 +33,8 @@ export const TableCell = React.forwardRef<TableCellElement, TableCellProps>(
         {...other}
         className={cx('manifest-table--cell', className)}
         align={align}
-        onMouseEnter={chainCallbacks(handleMouseEnter, onMouseEnter)}
-        ref={useMergedRefs(cellRef, forwardedRef)}
+        onMouseEnter={chain(handleMouseEnter, onMouseEnter)}
+        ref={mergeRefs(cellRef, forwardedRef)}
         title={isOverflown ? title : undefined}
       >
         {children}
