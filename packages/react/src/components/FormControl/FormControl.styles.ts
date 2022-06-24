@@ -18,7 +18,7 @@ export const useFormControlStyles = css({
   '.manifest-form-control--label': {
     color: '$text-secondary',
     padding: 0,
-    marginBottom: '$small',
+    marginBottom: '$x-small',
     position: 'relative',
     typography: '$subtext',
   },

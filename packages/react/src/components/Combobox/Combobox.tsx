@@ -99,7 +99,7 @@ const Combobox = React.forwardRef<ComboboxElement, ComboboxProps>((props, forwar
   );
 
   const { hoverProps, isHovered } = useHover({ isDisabled });
-  const { isFocusVisible, focusProps } = useFocusRing({
+  const { isFocusVisible, isFocused, focusProps } = useFocusRing({
     autoFocus,
     isTextInput: true,
     within: true,
@@ -118,6 +118,7 @@ const Combobox = React.forwardRef<ComboboxElement, ComboboxProps>((props, forwar
   const { className } = useComboboxStyles({
     hasStartIcon: !!startIcon,
     isDisabled,
+    isFocused,
     isFocusVisible,
     isHovered,
     isInvalid,

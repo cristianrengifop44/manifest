@@ -6,23 +6,28 @@ export const usePaginationStyles = css({
   columnGap: '$x-small',
   display: 'flex',
   flexWrap: 'wrap',
-  justifyContent: 'flex-end',
   rowGap: '$small',
 
   '.manifest-pagination--ellipsis': {
-    height: 'auto',
-    padding: '$xx-small $small',
-    textAlign: 'center',
+    backgroundColor: '$palette-grey-50',
+    border: '1px solid $colors$palette-grey-200',
+    borderRadius: '$small',
+    boxSizing: 'border-box',
+    display: 'inline-flex',
+    margin: 0,
+    outline: 0,
+    position: 'relative',
+    padding: '0.375rem 0.75rem',
   },
 });
 
 export const usePaginationButtonStyles = css(
   {
-    $$paginationBackgroundColor: '$colors$palette-grey-50',
+    $$backgroundColor: '$colors$palette-grey-50',
 
     alignItems: 'center',
     appearance: 'none',
-    backgroundColor: '$$paginationBackgroundColor',
+    backgroundColor: '$$backgroundColor',
     border: '1px solid $colors$palette-grey-200',
     borderRadius: '$small',
     boxSizing: 'border-box',
@@ -32,24 +37,28 @@ export const usePaginationButtonStyles = css(
     margin: 0,
     outline: 0,
     position: 'relative',
-    padding: '$xx-small $small',
+    padding: '0.375rem 0.75rem',
     transition: '$color',
     textDecoration: 'none',
     userSelect: 'none',
     width: 'auto',
 
+    '.manifest-icon': {
+      fontSize: '1.125rem',
+    },
+
     '.manifest-pagination-item--icon__end': {
-      marginLeft: '$xx-small',
+      marginLeft: '$x-small',
     },
 
     '.manifest-pagination-item--icon__start': {
-      marginRight: '$xx-small',
+      marginRight: '$x-small',
     },
 
     variants: {
       isActive: {
         true: {
-          $$paginationBackgroundColor: '$colors$palette-grey-200',
+          $$backgroundColor: '$colors$palette-grey-200',
         },
       },
       isDisabled: {
@@ -60,7 +69,7 @@ export const usePaginationButtonStyles = css(
       },
       isHovered: {
         true: {
-          $$paginationBackgroundColor: '$palette-grey-100',
+          $$backgroundColor: '$colors$palette-grey-100',
         },
       },
       isPressed: {
@@ -73,7 +82,7 @@ export const usePaginationButtonStyles = css(
         isActive: true,
         isHovered: true,
         css: {
-          $$paginationBackgroundColor: '$colors$palette-grey-200',
+          $$backgroundColor: '$colors$palette-grey-200',
         },
       },
     ],

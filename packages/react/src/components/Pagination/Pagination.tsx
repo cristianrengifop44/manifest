@@ -1,6 +1,6 @@
 import type { AriaButtonProps } from '@react-types/button';
 import * as React from 'react';
-import { CSS, cx, usePaginationStyles, usePaginationButtonStyles } from './styles';
+import { CSS, cx, usePaginationStyles, usePaginationButtonStyles } from './Pagination.styles';
 import { mergeProps, mergeRefs } from '@react-aria/utils';
 import { Icon } from '../Icon';
 import { Typography } from '../Typography';
@@ -46,6 +46,7 @@ interface PaginationProps extends UsePaginationProps, Omit<PaginationNativeProps
 const Pagination = React.forwardRef<PaginationElement, PaginationProps>(
   (props: PaginationProps, forwardedRef) => {
     const {
+      boundaries,
       className: classNameProp,
       css,
       defaultPage = 1,
@@ -53,13 +54,22 @@ const Pagination = React.forwardRef<PaginationElement, PaginationProps>(
         // noop
       },
       page = 1,
+      rowsPerPage,
+      siblings,
       showPageNumbers = true,
+      totalRowCount,
       ...other
     } = props;
 
     const [activePage, setActivePage] = useControlledState(page, defaultPage, onChange);
 
-    const [pages, pageCount] = usePagination({ ...props, page: activePage });
+    const [pages, pageCount] = usePagination({
+      boundaries,
+      page: activePage,
+      rowsPerPage,
+      siblings,
+      totalRowCount,
+    });
 
     const next = () => setActivePage(Number(activePage) + 1);
     const previous = () => setActivePage(Number(activePage) - 1);
@@ -75,7 +85,6 @@ const Pagination = React.forwardRef<PaginationElement, PaginationProps>(
       >
         <PaginationItem
           aria-label="go to previous page"
-          className="manifest-pagination-item"
           isDisabled={activePage === 1}
           onPress={previous}
         >
@@ -95,7 +104,6 @@ const Pagination = React.forwardRef<PaginationElement, PaginationProps>(
                 <PaginationItem
                   aria-current={item === activePage ? 'true' : undefined}
                   aria-label={`${item === activePage ? '' : 'go to '}page ${String(item)}`}
-                  className="manifest-pagination-item"
                   isActive={item === activePage}
                   onPress={() => setPage(item as number)}
                 >
@@ -107,7 +115,6 @@ const Pagination = React.forwardRef<PaginationElement, PaginationProps>(
 
         <PaginationItem
           aria-label="go to next page"
-          className="manifest-pagination-item"
           isDisabled={activePage === pageCount}
           onPress={next}
         >
@@ -142,7 +149,7 @@ interface PaginationItemProps extends PaginationItemNativeProps, AriaButtonProps
 
 const PaginationItem = React.forwardRef<PaginationItemElement, PaginationItemProps>(
   (props, forwardedRef) => {
-    const { autoFocus, className: classNameProp, isActive, isDisabled } = props;
+    const { autoFocus, children, className: classNameProp, isActive, isDisabled } = props;
 
     const itemRef = React.useRef<HTMLButtonElement>(null);
 
@@ -166,7 +173,9 @@ const PaginationItem = React.forwardRef<PaginationItemElement, PaginationItemPro
         {...mergeProps(buttonProps, focusProps, hoverProps)}
         className={cx('manifest-pagination-item', className, classNameProp)}
         ref={mergeRefs(itemRef, forwardedRef)}
-      />
+      >
+        {children}
+      </button>
     );
   },
 );
@@ -255,3 +264,6 @@ function usePagination(props: UsePaginationProps) {
 
   return [pages, pageCount] as [PageType[], number];
 }
+
+export { Pagination, usePagination };
+export type { PaginationProps, UsePaginationProps };

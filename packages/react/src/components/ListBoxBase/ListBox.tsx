@@ -3,8 +3,15 @@ import type { FocusableProps } from '@react-types/shared';
 import type { ListState } from '@react-stately/list';
 import type { Node } from '@react-types/shared';
 import * as React from 'react';
-import { CSS, cx, useListBoxStyles, useListItemBoxStyles, useListBoxSectionStyles } from './styles';
+import {
+  CSS,
+  cx,
+  useListBoxStyles,
+  useListItemBoxStyles,
+  useListBoxSectionStyles,
+} from './ListBox.styles';
 import { mergeProps, mergeRefs } from '@react-aria/utils';
+import { Icon } from '../Icon';
 import { Separator } from '../Separator';
 import { Typography } from '../Typography';
 import { useHover } from '@react-aria/interactions';
@@ -98,10 +105,6 @@ interface ListBoxItemProps<T extends object = object>
    */
   css?: CSS;
   /**
-   * Icon added after the button text.
-   */
-  endIcon?: React.ReactElement;
-  /**
    * Whether the item is virtualized.
    */
   isVirtualized?: boolean;
@@ -110,7 +113,7 @@ interface ListBoxItemProps<T extends object = object>
    */
   item: Node<T>;
   /**
-   * Icon added before the button text.
+   * Icon added before the item text.
    */
   startIcon?: React.ReactElement;
   /**
@@ -120,14 +123,7 @@ interface ListBoxItemProps<T extends object = object>
 }
 
 const ListBoxItem: React.FC<ListBoxItemProps> = props => {
-  const {
-    className: classNameProp,
-    css,
-    endIcon: endIconProp,
-    isVirtualized,
-    item,
-    startIcon: startIconProp,
-  } = props;
+  const { className: classNameProp, css, isVirtualized, item, startIcon: startIconProp } = props;
 
   const { rendered, key } = item;
 
@@ -146,10 +142,7 @@ const ListBoxItem: React.FC<ListBoxItemProps> = props => {
   );
   const { hoverProps, isHovered } = useHover({ isDisabled });
 
-  const endIcon = React.useMemo(
-    () => endIconProp ?? (item.props.endIcon as React.ReactElement),
-    [endIconProp, item.props.endIcon],
-  );
+  console.log(isSelected);
 
   const startIcon = React.useMemo(
     () => startIconProp ?? (item.props.startIcon as React.ReactElement),
@@ -181,9 +174,9 @@ const ListBoxItem: React.FC<ListBoxItemProps> = props => {
         {rendered}
       </Typography>
 
-      {endIcon && (
+      {isSelected && (
         <span className={cx('manifest-listbox-item--icon', 'manifest-listbox-item--icon__end')}>
-          {endIcon}
+          <Icon icon="check" />
         </span>
       )}
     </div>

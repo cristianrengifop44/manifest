@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSS, cx, useLinkStyles } from './styles';
+import { CSS, cx, useLinkStyles } from './Link.styles';
 
 /**
  * -----------------------------------------------------------------------------------------------

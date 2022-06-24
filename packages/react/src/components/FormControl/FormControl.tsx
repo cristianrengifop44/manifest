@@ -1,6 +1,6 @@
 import type { AriaLabelingProps, DOMProps, Validation } from '@react-types/shared';
 import * as React from 'react';
-import { CSS, cx, useFormControlStyles } from './styles';
+import { CSS, cx, useFormControlStyles } from './FormControl.styles';
 import { mergeProps } from '@react-aria/utils';
 import { Typography } from '../Typography';
 import { useField } from '@react-aria/label';

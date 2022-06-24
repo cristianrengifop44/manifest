@@ -70,6 +70,11 @@ export const useComboboxStyles = css({
         },
       },
     },
+    isFocused: {
+      true: {
+        $$borderColor: '$colors$primary-default',
+      },
+    },
     isFocusVisible: {
       true: {
         '.manifest-combobox--input': {

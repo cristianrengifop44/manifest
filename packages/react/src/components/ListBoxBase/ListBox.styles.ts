@@ -4,22 +4,22 @@ export const useListBoxStyles = css({
   boxSizing: 'border-box',
   margin: 0,
   outline: 'none',
-  padding: 0,
+  padding: '$small',
   position: 'relative',
 });
 
 export const useListItemBoxStyles = css({
-  $$listBoxItemBackgroundColor: 'transparent',
+  $$backgroundColor: 'transparent',
 
   alignItems: 'center',
-  backgroundColor: '$$listBoxItemBackgroundColor',
+  backgroundColor: '$$backgroundColor',
   borderRadius: '$small',
   boxSizing: 'border-box',
   color: '$text-primary',
   cursor: 'pointer',
   display: 'flex',
   outline: 'none',
-  padding: '$small',
+  padding: '0.375rem $small',
   position: 'relative',
 
   '.manifest-listbox-item--icon': {
@@ -27,9 +27,14 @@ export const useListItemBoxStyles = css({
     color: '$text-secondary',
     display: 'inline-flex',
     flexShrink: 0,
+
+    '& > .manifest-icon': {
+      fontSize: '1.125rem',
+    },
   },
 
   '.manifest-listbox-item--icon__end': {
+    color: '$primary-default',
     marginLeft: '$small',
   },
 
@@ -55,22 +60,22 @@ export const useListItemBoxStyles = css({
     },
     isFocused: {
       true: {
-        $$listBoxItemBackgroundColor: '$colors$background-secondary',
+        $$backgroundColor: '$colors$background-secondary',
       },
     },
     isHovered: {
       true: {
-        $$listBoxItemBackgroundColor: '$colors$background-secondary',
+        $$backgroundColor: '$colors$background-secondary',
       },
     },
     isPressed: {
       true: {
-        $$listBoxItemBackgroundColor: '$colors$background-secondary',
+        $$backgroundColor: '$colors$background-secondary',
       },
     },
     isSelected: {
       true: {
-        $$listBoxItemBackgroundColor: '$colors$background-secondary',
+        $$backgroundColor: '$colors$background-secondary',
       },
     },
   },
