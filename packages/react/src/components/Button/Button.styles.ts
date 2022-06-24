@@ -2,26 +2,29 @@ import { focus, css } from '../../styles';
 
 export const useButtonStyles = css(
   {
-    $$buttonBackgroundColor: 'transparent',
-    $$buttonBoxShadow: '$shadows$small',
-    $$buttonPaddingBottomTop: '$space$small',
-    $$buttonTextcolor: '$colors$text-primary',
+    $$backgroundColor: 'transparent',
+    $$boxShadow: '$shadows$small',
+    $$color: '$colors$text-primary',
 
     all: 'unset',
     alignItems: 'center',
     appearance: 'none',
-    backgroundColor: '$$buttonBackgroundColor',
+    backgroundColor: '$$backgroundColor',
     border: 'none',
     borderRadius: '$small',
-    boxShadow: '$$buttonBoxShadow',
+    boxShadow: '$$boxShadow',
     boxSizing: 'border-box',
-    color: '$$buttonTextcolor',
+    color: '$$color',
     cursor: 'pointer',
     display: 'inline-flex',
+    fontFamily: '$text',
+    fontSize: '$small',
+    fontWeight: '$semibold',
     justifyContent: 'center',
+    letterSpacing: '$medium',
+    lineHeight: '$small',
     position: 'relative',
     px: '0.75rem',
-    py: '$$buttonPaddingBottomTop',
     userSelect: 'none',
     whiteSpace: 'nowrap',
 
@@ -29,14 +32,6 @@ export const useButtonStyles = css(
       alignSelf: 'center',
       display: 'inline-flex',
       flexShrink: 0,
-    },
-
-    '.manifest-button--text': {
-      fontFamily: '$text',
-      fontSize: '$small',
-      fontWeight: '$semibold',
-      letterSpacing: '$medium',
-      lineHeight: '$small',
     },
 
     '.manifest-button--icon__end': {
@@ -66,36 +61,38 @@ export const useButtonStyles = css(
       },
       variant: {
         danger: {
-          $$buttonBackgroundColor: '$colors$palette-red-500',
-          $$buttonTextcolor: '$colors$palette-white',
+          $$backgroundColor: '$colors$palette-red-500',
+          $$color: '$colors$palette-white',
         },
         brand: {
-          $$buttonTextcolor: '$colors$palette-white',
+          $$color: '$colors$palette-white',
 
           background: '$colors$brand-gradient',
         },
         primary: {
-          $$buttonBackgroundColor: '$colors$primary-default',
-          $$buttonTextcolor: '$colors$palette-white',
+          $$backgroundColor: '$colors$primary-default',
+          $$color: '$colors$palette-white',
         },
         secondary: {
-          $$buttonBackgroundColor: '$colors$palette-white',
+          $$backgroundColor: '$colors$palette-white',
         },
         tertiary: {
-          $$buttonBackgroundColor: 'transparent',
-          $$buttonBoxShadow: 'none',
+          $$backgroundColor: 'transparent',
+          $$boxShadow: 'none',
         },
       },
       size: {
         medium: {
-          '.manifest-button--text': { py: '2px' },
+          height: '2.5rem',
+          py: '$small',
 
           [`.manifest-button--icon > .material-icons`]: {
             fontSize: '$x-large',
           },
         },
         small: {
-          $$buttonPaddingBottomTop: '0.375rem',
+          height: '2rem',
+          py: '0.375rem',
 
           [`.manifest-button--icon > .material-icons`]: {
             fontSize: '1.125rem',
@@ -109,21 +106,21 @@ export const useButtonStyles = css(
         isHovered: true,
         variant: 'primary',
         css: {
-          $$buttonBackgroundColor: '$colors$primary-hover',
+          $$backgroundColor: '$colors$primary-hover',
         },
       },
       {
         isHovered: true,
         variant: 'secondary',
         css: {
-          $$buttonBackgroundColor: '$colors$palette-grey-100',
+          $$backgroundColor: '$colors$palette-grey-100',
         },
       },
       {
         isHovered: true,
         variant: 'tertiary',
         css: {
-          $$buttonBackgroundColor: '$colors$palette-grey-100',
+          $$backgroundColor: '$colors$palette-grey-100',
         },
       },
       {
@@ -145,23 +142,23 @@ export const useButtonStyles = css(
         isPressed: true,
         variant: 'primary',
         css: {
-          $$buttonBackgroundColor: '$colors$primary-active',
-          $$buttonBoxShadow: 'inset 0px 1px 1px rgba(5, 10, 26, 0.25)',
+          $$backgroundColor: '$colors$primary-active',
+          $$boxShadow: 'inset 0px 1px 1px rgba(5, 10, 26, 0.25)',
         },
       },
       {
         isPressed: true,
         variant: 'secondary',
         css: {
-          $$buttonBackgroundColor: '$colors$palette-grey-300',
-          $$buttonBoxShadow: 'inset 0px 1px 1px rgba(5, 10, 26, 0.25)',
+          $$backgroundColor: '$colors$palette-grey-300',
+          $$boxShadow: 'inset 0px 1px 1px rgba(5, 10, 26, 0.25)',
         },
       },
       {
         isPressed: true,
         variant: 'tertiary',
         css: {
-          $$buttonBackgroundColor: '$colors$palette-grey-300',
+          $$backgroundColor: '$colors$palette-grey-300',
         },
       },
       {
@@ -175,7 +172,7 @@ export const useButtonStyles = css(
         isPressed: true,
         variant: 'danger',
         css: {
-          $$buttonBoxShadow: 'inset 0px 1px 1px rgba(5, 10, 26, 0.25)',
+          $$boxShadow: 'inset 0px 1px 1px rgba(5, 10, 26, 0.25)',
 
           background:
             'linear-gradient(0deg, rgba(9, 21, 33, 0.3), rgba(9, 21, 33, 0.3)), $colors$palette-red-500',

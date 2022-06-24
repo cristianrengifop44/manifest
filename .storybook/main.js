@@ -4,5 +4,5 @@ module.exports = {
     builder: 'webpack5',
   },
   staticDirs: ['public'],
-  stories: ['../packages/**/*.stories.mdx', '../packages/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../packages/**/*.stories.@(js|jsx|ts|tsx)'],
 };

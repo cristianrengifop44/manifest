@@ -1,10 +1,18 @@
 import type { AriaButtonProps } from '@react-types/button';
 import * as React from 'react';
-import { CSS, cx, useButtonStyles, useButtonGroupStyles, useIconButtonStyles } from './styles';
+import {
+  CSS,
+  cx,
+  useButtonStyles,
+  useButtonGroupStyles,
+  useIconButtonStyles,
+} from './Button.styles';
 import { mergeProps, mergeRefs } from '@react-aria/utils';
 import { useButton } from '@react-aria/button';
 import { useFocusRing } from '@react-aria/focus';
 import { useHover } from '@react-aria/interactions';
+
+type Variant = 'primary' | 'secondary' | 'tertiary' | 'danger' | 'brand';
 
 /**
  * -----------------------------------------------------------------------------------------------
@@ -14,7 +22,7 @@ import { useHover } from '@react-aria/interactions';
 
 interface ButtonGroupContext {
   isDisabled?: boolean;
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'danger';
+  variant?: Variant;
 }
 
 export const ButtonGroupContext = React.createContext<ButtonGroupContext>({});
@@ -54,7 +62,7 @@ interface ButtonProps extends ButtonNativeProps, AriaButtonProps {
    *
    * @default 'primary'
    */
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'danger';
+  variant?: Variant;
 }
 
 const Button = React.forwardRef<ButtonElement, ButtonProps>((props, forwardedRef) => {
@@ -98,13 +106,13 @@ const Button = React.forwardRef<ButtonElement, ButtonProps>((props, forwardedRef
       ref={mergeRefs(buttonRef, forwardedRef)}
     >
       {startIcon && (
-        <span className={cx('manifest-button--icon', 'manifest-button-icon__start')}>
+        <span className={cx('manifest-button--icon', 'manifest-button--icon__start')}>
           {startIcon}
         </span>
       )}
       {children}
       {endIcon && (
-        <span className={cx('manifest-button--icon', 'manifest-button-icon__end')}>{endIcon}</span>
+        <span className={cx('manifest-button--icon', 'manifest-button--icon__end')}>{endIcon}</span>
       )}
     </button>
   );
@@ -145,7 +153,7 @@ interface ButtonGroupProps extends ButtonGroupNativeProps {
    *
    * @default 'primary'
    */
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'danger';
+  variant?: Variant;
 }
 
 const ButtonGroup = React.forwardRef<ButtonGroupElement, ButtonGroupProps>(
