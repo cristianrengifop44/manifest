@@ -1,7 +1,7 @@
 import type { AriaTextFieldProps } from '@react-types/textfield';
 import type { PressEvents } from '@react-types/shared';
 import * as React from 'react';
-import { CSS, cx, useTextFieldStyles } from './styles';
+import { CSS, cx, useTextFieldStyles } from './TextField.styles';
 import { FormControl } from '../FormControl';
 import { mergeProps } from '@react-aria/utils';
 import { useFocusRing } from '@react-aria/focus';
@@ -81,12 +81,13 @@ const TextField = React.forwardRef<TextFieldElement, TextFieldProps>((props, for
   );
 
   const { hoverProps, isHovered } = useHover({ isDisabled });
-  const { isFocusVisible, focusProps } = useFocusRing({ autoFocus, isTextInput: true });
+  const { isFocusVisible, isFocused, focusProps } = useFocusRing({ autoFocus, isTextInput: true });
 
   const { className } = useTextFieldStyles({
     hasEndIcon: !!endIcon,
     hasStartIcon: !!startIcon,
     isDisabled,
+    isFocused,
     isFocusVisible,
     isHovered,
     isInvalid,

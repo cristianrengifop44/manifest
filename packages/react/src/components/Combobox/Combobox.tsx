@@ -122,6 +122,7 @@ const Combobox = React.forwardRef<ComboboxElement, ComboboxProps>((props, forwar
     isFocusVisible,
     isHovered,
     isInvalid,
+    isPlaceholder: !state.selectedItem,
     size,
     css,
   });

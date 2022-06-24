@@ -1,8 +1,9 @@
 import type { OverlayTriggerProps } from '@react-types/overlays';
 import * as React from 'react';
-import { CSS, cx, useTooltipStyles } from './styles';
+import { CSS, cx, useTooltipStyles } from './Tooltip.styles';
 import { mergeProps, mergeRefs } from '@react-aria/utils';
 import { useTooltip, useTooltipTrigger } from '@react-aria/tooltip';
+import { FocusableProvider } from '@react-aria/focus';
 import { OverlayContainer } from '@react-aria/overlays';
 import { Primitive } from '@radix-ui/react-primitive';
 import { Typography } from '../Typography';
@@ -74,14 +75,12 @@ const Tooltip = React.forwardRef<TooltipElement, TooltipProps>((props, forwarded
   const { className } = useTooltipStyles({ css });
 
   return (
-    <>
-      <Primitive.button {...triggerProps} asChild ref={triggerRef}>
-        {trigger}
-      </Primitive.button>
+    <FocusableProvider {...triggerProps} ref={triggerRef}>
+      {trigger}
       {state.isOpen && (
         <OverlayContainer>
           <div
-            {...mergeProps(contentProps, positionProps, tooltipProps, other)}
+            {...mergeProps(tooltipProps, positionProps, contentProps, other)}
             className={cx('manifest-tooltip', className, classNameProp)}
             ref={mergeRefs(overlayRef, forwardedRef)}
           >
@@ -89,7 +88,7 @@ const Tooltip = React.forwardRef<TooltipElement, TooltipProps>((props, forwarded
           </div>
         </OverlayContainer>
       )}
-    </>
+    </FocusableProvider>
   );
 });
 

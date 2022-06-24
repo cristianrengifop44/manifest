@@ -4,7 +4,7 @@ export const useTagStyles = css({
   alignItems: 'center',
   appearance: 'none',
   background: 'none',
-  border: 'none',
+  border: '1px solid $colors$palette-grey-200',
   borderRadius: '$small',
   boxSizing: 'border-box',
   color: '$text-primary',
@@ -12,26 +12,36 @@ export const useTagStyles = css({
   height: '1.5rem',
   justifyContent: 'center',
   outline: 0,
-  padding: 0,
+  padding: '0.1875rem $small',
   textDecoration: 'none',
   verticalAlign: 'middle',
   whiteSpace: 'nowrap',
 
   '.manifest-tag--button': {
-    marginRight: '$x-small',
+    padding: 0,
+    margin: 0,
+    marginLeft: '$x-small',
+    size: '1rem',
   },
 
   '.manifest-tag--icon': {
-    fontSize: '1rem',
+    fontSize: '$medium',
     size: '1rem',
   },
 
   '.manifest-tag--text': {
     color: 'inherit',
     overflow: 'hidden',
-    px: '$small',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+  },
+
+  variants: {
+    isRemovable: {
+      true: {
+        paddingRight: '0.375rem',
+      },
+    },
   },
 });
 

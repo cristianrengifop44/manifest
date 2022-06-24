@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSS, cx, useTypographyStyles } from './styles';
+import { CSS, cx, useTypographyStyles } from './Typography.styles';
 
 /**
  * -----------------------------------------------------------------------------------------------

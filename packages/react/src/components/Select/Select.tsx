@@ -1,7 +1,7 @@
 import type { AriaSelectProps } from '@react-types/select';
 import * as LisBoxBase from '../ListBoxBase';
 import * as React from 'react';
-import { CSS, cx } from './styles';
+import { CSS, cx, useSelectStyles } from './Select.styles';
 import { HiddenSelect, useSelect } from '@react-aria/select';
 import { Item, Section } from '@react-stately/collections';
 import { mergeProps, useLayoutEffect, useResizeObserver } from '@react-aria/utils';
@@ -104,6 +104,18 @@ const Select = React.forwardRef<SelectElement, SelectProps>((props, forwardedRef
   const { isFocusVisible, focusProps } = useFocusRing({ autoFocus });
   const { hoverProps, isHovered } = useHover({ isDisabled });
 
+  const { className } = useSelectStyles({
+    hasStartIcon: !!startIcon,
+    isDisabled,
+    isFocusVisible,
+    isHovered,
+    isInvalid,
+    isPlaceholder: !state.selectedItem,
+    isPressed,
+    size,
+    css,
+  });
+
   const handlResize = React.useCallback(() => {
     if (triggerRef.current) {
       setPopoverWidth(triggerRef.current.offsetWidth);
@@ -124,7 +136,7 @@ const Select = React.forwardRef<SelectElement, SelectProps>((props, forwardedRef
       label={label}
       labelProps={mergeProps(labelProps, labelPropsProp)}
     >
-      <div className={cx('manifest-select', classNameProp)} ref={forwardedRef}>
+      <div className={cx('manifest-select', className, classNameProp)} ref={forwardedRef}>
         {startIcon && (
           <span className={cx('manifest-select--icon', 'manifest-select--icon__start')}>
             {startIcon}

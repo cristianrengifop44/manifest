@@ -7,7 +7,7 @@ import {
   useTableCellStyles,
   useTableColumnStyles,
   useTableRowStyles,
-} from './styles';
+} from './Table.styles';
 import { Icon } from '../Icon';
 
 type Align = 'center' | 'justify' | 'left' | 'right';

@@ -4,7 +4,7 @@ export const useSeparatorStyles = css({
   alignSelf: 'stretch',
   backgroundColor: '$border-primary',
   border: 'none',
-  borderWidth: '$small',
+  borderWidth: '1px',
   margin: 0,
   overflow: 'visible',
 

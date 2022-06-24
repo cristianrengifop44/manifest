@@ -97,6 +97,11 @@ export const useComboboxStyles = css({
         $$textColor: '$colors$text-danger',
       },
     },
+    isPlaceholder: {
+      true: {
+        $$textColor: '$colors$text-tertiary',
+      },
+    },
     size: {
       medium: {
         '.manifest-combobox--icon': {

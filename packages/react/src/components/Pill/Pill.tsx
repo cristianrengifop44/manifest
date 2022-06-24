@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSS, cx, usePillStyles } from './styles';
+import { CSS, cx, usePillStyles } from './Pill.styles';
 import { useTooltip, useTooltipTrigger } from '@react-aria/tooltip';
 import { mergeProps } from '@react-aria/utils';
 import { Typography } from '../Typography';
@@ -31,9 +31,11 @@ interface PillProps extends PillNativeProps {
    */
   icon?: React.ReactNode;
   /**
-   * Whether the pill is collpased by default.
+   * Whether the pill is collapsible.
+   *
+   * @default 'false'
    */
-  isCollapsed?: boolean;
+  isCollapsible?: boolean;
   /**
    * The text label of the pill.
    */
@@ -46,7 +48,7 @@ const Pill = React.forwardRef<PillElement, PillProps>((props, forwaredRef) => {
     colorScheme = 'indigo',
     css,
     icon,
-    isCollapsed = false,
+    isCollapsible = false,
     label,
     ...other
   } = props;
@@ -54,10 +56,10 @@ const Pill = React.forwardRef<PillElement, PillProps>((props, forwaredRef) => {
   const overlayRef = React.useRef<HTMLDivElement>(null);
   const triggerRef = React.useRef<HTMLDivElement>(null);
 
-  const state = useTooltipTriggerState({ isDisabled: !isCollapsed, delay: 0 });
+  const state = useTooltipTriggerState({ isDisabled: !isCollapsible, delay: 0 });
 
   const { triggerProps, tooltipProps: contentProps } = useTooltipTrigger(
-    { isDisabled: !isCollapsed },
+    { isDisabled: !isCollapsible },
     state,
     triggerRef,
   );
@@ -70,9 +72,9 @@ const Pill = React.forwardRef<PillElement, PillProps>((props, forwaredRef) => {
   });
   const { tooltipProps } = useTooltip({ isOpen: state.isOpen }, state);
 
-  const isOpen = isCollapsed ? state.isOpen : true;
+  const isOpen = isCollapsible ? state.isOpen : true;
 
-  const { className } = usePillStyles({ colorScheme, css, isOpen });
+  const { className } = usePillStyles({ colorScheme, css, isCollapsible, isOpen });
 
   return (
     <div {...other} className={cx('manifest-pill', className, classNameProp)} ref={forwaredRef}>
@@ -83,7 +85,7 @@ const Pill = React.forwardRef<PillElement, PillProps>((props, forwaredRef) => {
       )}
       {isOpen && (
         <Typography
-          {...mergeProps(contentProps, tooltipProps, isCollapsed ? positionProps : {})}
+          {...mergeProps(contentProps, tooltipProps, isCollapsible ? positionProps : {})}
           className="manifest-pill--text"
           variant="captionBold"
         >

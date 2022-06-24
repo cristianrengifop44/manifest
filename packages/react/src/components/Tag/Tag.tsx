@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSS, cx, useTagStyles } from './styles';
+import { CSS, cx, useTagStyles } from './Tag.styles';
 import { Icon } from '../Icon';
 import { IconButton } from '../Button';
 import { Typography } from '../Typography';
@@ -31,7 +31,7 @@ interface TagProps extends TagNativeProps {
 const Tag = React.forwardRef<TagElement, TagProps>((props, forwardedRef) => {
   const { children, className: classNameProp, css, isRemovable, onRemove, ...other } = props;
 
-  const { className } = useTagStyles({ css });
+  const { className } = useTagStyles({ css, isRemovable });
 
   return (
     <div {...other} className={cx('manifest-tag', className, classNameProp)} ref={forwardedRef}>

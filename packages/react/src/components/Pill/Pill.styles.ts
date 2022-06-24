@@ -14,24 +14,22 @@ export const usePillStyles = css({
   '.manifest-pill--icon': {
     alignItems: 'center',
     borderRadius: '$full',
-    color: '$white',
+    color: '$palette-white',
     display: 'flex',
     fontSize: '$medium',
     justifyContent: 'center',
     size: 20,
 
-    '> .material-icons': {
+    '> .manifest-icon': {
       fontSize: '$medium',
     },
   },
 
   '.manifest-pill--text': {
     backgroundColor: '$$backgroundColor',
-    borderBottomRightRadius: '$full',
-    borderTopRightRadius: '$full',
-    left: 24,
-    padding: '3px 6px 3px 2px',
-    position: 'absolute',
+    borderRadius: '$full',
+    paddingLeft: '$x-small',
+    paddingRight: '0.375rem',
     width: 'max-content',
   },
 
@@ -60,13 +58,33 @@ export const usePillStyles = css({
         },
       },
     },
-    isOpen: {
+    isCollapsible: {
       true: {
-        borderBottomRightRadius: 'inherit',
-        borderTopRightRadius: 'inherit',
+        '.manifest-pill--text': {
+          borderBottomLeftRadius: 0,
+          borderTopLeftRadius: 0,
+          left: 24,
+          position: 'absolute',
+          paddingLeft: '0.125rem',
+          py: '0.1875rem',
+        },
       },
     },
+    isOpen: {
+      true: {},
+    },
   },
+
+  compoundVariants: [
+    {
+      isCollapsible: true,
+      isOpen: true,
+      css: {
+        borderBottomRightRadius: 0,
+        borderTopRightRadius: 0,
+      },
+    },
+  ],
 
   defaultVariants: {
     colorScheme: 'indigo',

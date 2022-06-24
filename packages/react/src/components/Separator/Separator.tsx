@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSS, cx, useSeparatorStyles } from './styles';
+import { CSS, cx, useSeparatorStyles } from './Separator.styles';
 import { mergeProps } from '@react-aria/utils';
 import { useSeparator } from '@react-aria/separator';
 

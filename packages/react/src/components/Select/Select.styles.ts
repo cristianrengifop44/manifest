@@ -43,6 +43,7 @@ export const useSelectStyles = css({
     outline: 0,
     padding: '0 $small',
     paddingRight: '2.5rem',
+    textAlign: 'start',
     width: '100%',
   },
 
@@ -88,6 +89,11 @@ export const useSelectStyles = css({
         $$borderColor: '$colors$border-danger',
         $$iconColor: '$colors$text-danger',
         $$textColor: '$colors$text-danger',
+      },
+    },
+    isPlaceholder: {
+      true: {
+        $$textColor: '$colors$text-tertiary',
       },
     },
     size: {

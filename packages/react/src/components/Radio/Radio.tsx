@@ -1,7 +1,7 @@
 import type { AriaRadioProps, AriaRadioGroupProps } from '@react-types/radio';
 import type { RadioGroupState } from '@react-stately/radio';
 import * as React from 'react';
-import { CSS, cx, useRadioStyles, useRadioGroupStyles } from './styles';
+import { CSS, cx, useRadioStyles, useRadioGroupStyles } from './Radio.styles';
 import { mergeProps } from '@react-aria/utils';
 import { Typography } from '../Typography';
 import { useFocusRing } from '@react-aria/focus';

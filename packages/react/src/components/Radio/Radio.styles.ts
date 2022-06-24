@@ -1,8 +1,8 @@
 import { css } from '../../styles';
 
 export const useRadioStyles = css({
-  $$radioBackgroundColor: '$colors$palette-white',
-  $$radioBorderColor: '$colors$palette-grey-500',
+  $$backgroundColor: '$colors$palette-white',
+  $$borderColor: '$colors$palette-grey-500',
 
   alignItems: 'center',
   boxSizing: 'border-box',
@@ -13,8 +13,8 @@ export const useRadioStyles = css({
 
   '.manifest-radio--control': {
     alignItems: 'center',
-    backgroundColor: '$$radioBackgroundColor',
-    border: '3px solid $$radioBorderColor:',
+    backgroundColor: '$$backgroundColor',
+    border: '3px solid $$borderColor',
     borderRadius: '$full',
     boxSizing: 'border-box',
     color: '$palette-white',
@@ -31,7 +31,7 @@ export const useRadioStyles = css({
     position: 'relative',
 
     '&::after': {
-      backgroundColor: '$white',
+      backgroundColor: '$palette-white',
       borderRadius: '$full',
       content: '""',
       display: 'block',
@@ -58,18 +58,15 @@ export const useRadioStyles = css({
   variants: {
     isChecked: {
       true: {
-        $$radioBackgroundColor: '$colors$primary-default',
-        $$radioBorderColor: 'transparent',
+        $$backgroundColor: '$colors$primary-default',
+        $$borderColor: 'transparent',
       },
     },
     isDisabled: {
       true: {
+        cursor: 'not-allowed',
+        opacity: 0.58,
         pointerEvents: 'none',
-
-        '.manifest-radio--control': {
-          opacity: 0.37,
-          pointerEvents: 'none',
-        },
       },
     },
     isFocusVisible: {
@@ -84,7 +81,7 @@ export const useRadioStyles = css({
     },
     isHovered: {
       true: {
-        $$radioBorderColor: '$colors$palette-grey-600',
+        $$borderColor: '$colors$palette-grey-600',
       },
     },
   },
@@ -94,7 +91,7 @@ export const useRadioGroupStyles = css({
   border: 0,
   display: 'flex',
   flexDirection: 'column',
-  gap: 3,
+  gap: '$small',
   margin: 0,
   padding: 0,
 

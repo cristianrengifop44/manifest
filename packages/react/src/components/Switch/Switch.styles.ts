@@ -16,6 +16,7 @@ export const useSwitchStyles = css({
     borderRadius: '$full',
     boxSizing: 'border-box',
     color: '$palette-white',
+    cursor: 'pointer',
     display: 'inline-flex',
     height: '1.5rem',
     margin: 0,

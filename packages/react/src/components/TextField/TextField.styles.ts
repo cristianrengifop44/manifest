@@ -77,6 +77,11 @@ export const useTextFieldStyles = css({
         cursor: 'not-allowed',
       },
     },
+    isFocused: {
+      true: {
+        $$borderColor: '$colors$primary-default',
+      },
+    },
     isFocusVisible: {
       true: {
         '.manifest-text-field--input': {

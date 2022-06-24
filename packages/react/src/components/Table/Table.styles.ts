@@ -52,11 +52,10 @@ export const useTableColumnStyles = css(
     position: 'relative',
     px: '$large',
     typography: '$subtext-bold',
+    userSelect: 'none',
 
     '.manifest-table-column--icon': {
-      color: '$primary-default',
-      bottom: 'calc(50% - 9px)',
-      fontSize: '$medium',
+      bottom: 'calc(50% - 12px)',
       margin: '0 $x-small',
       position: 'absolute',
       transition: '$transform',
@@ -93,8 +92,8 @@ export const useTableRowStyles = css({
   variants: {
     isHovered: {
       true: {
-        [`& ${useTableCellStyles}`]: {
-          backgroundColor: '$palette-grey-100',
+        '.manifest-table-cell': {
+          backgroundColor: '$palette-grey-50',
         },
       },
     },

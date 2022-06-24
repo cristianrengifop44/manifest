@@ -1,6 +1,6 @@
 import type { AriaSwitchProps } from '@react-types/switch';
 import * as React from 'react';
-import { CSS, cx, useSwitchStyles } from './styles';
+import { CSS, cx, useSwitchStyles } from './Switch.styles';
 import { mergeProps } from '@react-aria/utils';
 import { Typography } from '../Typography';
 import { useFocusRing } from '@react-aria/focus';
