@@ -10,10 +10,10 @@ import {
   useDropdownStyles,
   useDropdownItemBoxStyles,
   useDropdownSectionStyles,
-} from './styles';
+} from './Dropdown.styles';
 import { Item, Section } from '@react-stately/collections';
 import { mergeProps, mergeRefs } from '@react-aria/utils';
-import { useHover, usePress } from '@react-aria/interactions';
+import { PressResponder, useHover, usePress } from '@react-aria/interactions';
 import { Popover } from '../Popover';
 import { Typography } from '../Typography';
 import { useFocusRing } from '@react-aria/focus';
@@ -36,8 +36,6 @@ interface DropdownContext<T extends object = object> {
   closeOnSelect?: boolean;
   menuProps: React.HTMLAttributes<HTMLUListElement>;
   menuRef: React.RefObject<HTMLUListElement>;
-  triggerProps: React.HTMLAttributes<HTMLButtonElement>;
-  triggerRef: React.RefObject<HTMLButtonElement>;
 }
 
 const DropdownContext = React.createContext<DropdownContext | null>(null);
@@ -63,18 +61,23 @@ const Dropdown: React.FC<React.PropsWithChildren<DropdownProps>> = props => {
   const { children, closeOnSelect = true } = props;
 
   const menuRef = React.useRef<HTMLUListElement>(null);
+  const menuTriggerRef = React.useRef<HTMLButtonElement>(null);
   const overlayRef = React.useRef<HTMLDivElement>(null);
-  const triggerRef = React.useRef<HTMLButtonElement>(null);
 
-  const [trigger, menu] = React.Children.toArray(children);
+  const [menuTrigger, menu] = React.Children.toArray(children);
 
   const state = useMenuTriggerState(props);
-  const { menuTriggerProps, menuProps } = useMenuTrigger({ trigger: 'press' }, state, triggerRef);
+  const { menuTriggerProps, menuProps } = useMenuTrigger(
+    { trigger: 'press' },
+    state,
+    menuTriggerRef,
+  );
   const { overlayProps: positionProps } = useOverlayPosition({
-    targetRef: triggerRef,
+    targetRef: menuTriggerRef,
     overlayRef,
     scrollRef: menuRef,
-    placement: 'bottom end',
+    offset: 4,
+    placement: 'bottom start',
     shouldFlip: true,
     isOpen: state.isOpen,
     onClose: state.close,
@@ -84,14 +87,14 @@ const Dropdown: React.FC<React.PropsWithChildren<DropdownProps>> = props => {
     <DropdownContext.Provider
       value={{
         closeOnSelect,
-        menuProps,
+        menuProps: mergeProps(menuProps, { autoFocus: state.focusStrategy || true }),
         menuRef,
-        triggerProps: menuTriggerProps,
-        triggerRef,
       }}
     >
-      {trigger}
-      <Popover {...positionProps} isOpen={state.isOpen} onClose={state.close}>
+      <PressResponder {...menuTriggerProps} ref={menuTriggerRef} isPressed={state.isOpen}>
+        {menuTrigger}
+      </PressResponder>
+      <Popover {...positionProps} isOpen={state.isOpen} onClose={state.close} ref={overlayRef}>
         {menu}
       </Popover>
     </DropdownContext.Provider>
@@ -141,7 +144,7 @@ const DropdownMenu = React.forwardRef<DropdownMenuElement, DropdownMenuProps>(
         {[...state.collection].map(item => {
           if (item.type === 'section') {
             return (
-              <DropdownSection
+              <_DropdownSection
                 key={item.key}
                 item={item}
                 state={state}
@@ -151,7 +154,7 @@ const DropdownMenu = React.forwardRef<DropdownMenuElement, DropdownMenuProps>(
           }
 
           let menuItem = (
-            <DropdownItem
+            <_DropdownItem
               key={item.key}
               item={item}
               state={state}
@@ -217,7 +220,7 @@ interface DropdownItemProps<T extends object = object>
   onAction?(key: React.Key): void;
 }
 
-const DropdownItem: React.FC<DropdownItemProps> = props => {
+const _DropdownItem: React.FC<DropdownItemProps> = props => {
   const {
     autoFocus,
     className: classNameProp,
@@ -299,10 +302,10 @@ const DropdownItem: React.FC<DropdownItemProps> = props => {
 };
 
 if (__DEV__) {
-  DropdownItem.displayName = 'ManifestDropdownItem';
+  _DropdownItem.displayName = 'ManifestDropdownItem';
 }
 
-DropdownItem.toString = () => '.manifest-dropdown-item';
+_DropdownItem.toString = () => '.manifest-dropdown-item';
 
 /**
  * -----------------------------------------------------------------------------------------------
@@ -331,7 +334,7 @@ interface DropdownSectionProps<T extends object = object> extends DropdownSectio
   onAction?(key: React.Key): void;
 }
 
-const DropdownSection: React.FC<DropdownSectionProps> = props => {
+const _DropdownSection: React.FC<DropdownSectionProps> = props => {
   const { className: classNameProp, css, item, onAction, state } = props;
 
   const { itemProps, headingProps, groupProps } = useMenuSection({
@@ -347,7 +350,7 @@ const DropdownSection: React.FC<DropdownSectionProps> = props => {
 
   return (
     <>
-      {showSeparator && <li {...separatorProps} className="manifest-dropdown-section--separator" />}
+      {showSeparator && <li {...separatorProps} className="manifest-dropdown-separator" />}
       <li {...itemProps} className={cx('manifest-dropdown-section', className, classNameProp)}>
         {item.rendered && (
           <Typography
@@ -361,7 +364,7 @@ const DropdownSection: React.FC<DropdownSectionProps> = props => {
         <ul {...groupProps} className="manifest-dropdown-section--group">
           {[...item.childNodes].map(node => {
             let item = (
-              <DropdownItem key={node.key} item={node} state={state} onAction={onAction} />
+              <_DropdownItem key={node.key} item={node} state={state} onAction={onAction} />
             );
 
             if (node.wrapper) {
@@ -377,10 +380,17 @@ const DropdownSection: React.FC<DropdownSectionProps> = props => {
 };
 
 if (__DEV__) {
-  DropdownSection.displayName = 'ManifestDropdownSection';
+  _DropdownSection.displayName = 'ManifestDropdownSection';
 }
 
-DropdownSection.toString = () => '.manifest-dropdown-section';
+_DropdownSection.toString = () => '.manifest-dropdown-section';
 
-export { Dropdown, DropdownMenu, Item as DropdownItem, Section as DropdownSection };
+const DropdownItem = Item as (
+  props: Omit<DropdownItemProps, 'item' | 'state' | 'onAction'>,
+) => JSX.Element;
+const DropdownSection = Section as (
+  props: Omit<DropdownSectionProps, 'item' | 'state' | 'onAction'>,
+) => JSX.Element;
+
+export { Dropdown, DropdownMenu, DropdownItem, DropdownSection };
 export { DropdownProps, DropdownMenuProps, DropdownItemProps, DropdownSectionProps };
