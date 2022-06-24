@@ -1,3 +1,4 @@
+import type { CalendarProps as AriaCalendarProps, DateValue } from '@react-types/calendar';
 import * as CalendarBase from '../CalendarBase';
 import * as React from 'react';
 import { createCalendar } from '@internationalized/date';
@@ -13,12 +14,15 @@ import { useLocale } from '@react-aria/i18n';
  * -----------------------------------------------------------------------------------------------
  */
 
+type CalendarAriaProps = AriaCalendarProps<DateValue>;
 type CalendarElement = React.ElementRef<typeof CalendarBase.Calendar>;
 
-type CalendarProps = Omit<
-  CalendarBase.CalendarProps,
-  'nextButtonProps' | 'prevButtonProps' | 'state'
->;
+interface CalendarProps
+  extends Omit<
+      CalendarBase.CalendarProps,
+      'defaultValue' | 'nextButtonProps' | 'prevButtonProps' | 'onChange' | 'state'
+    >,
+    CalendarAriaProps {}
 
 const Calendar = React.forwardRef<CalendarElement, CalendarProps>((props, forwardedRef) => {
   const { locale } = useLocale();

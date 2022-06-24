@@ -13,118 +13,104 @@ export const calendarStyles = css({
 
 export const calendarCellStyles = css({
   $$backgroundColor: 'transparent',
-  $$textColor: '$colors$text-secondary',
+  $$borderColor: 'transparent',
+  $$color: '$colors$text-primary',
+  $$background: 'transparent',
 
   alignItems: 'center',
   display: 'inline-flex',
   height: '2rem',
   justifyContent: 'center',
+  padding: '$x-small 0',
   position: 'relative',
   width: '2.75rem',
 
-  '.manifest-calendar-cell--button': {
-    all: 'unset',
+  '.manifest-calendar-grid--cell__date': {
     alignItems: 'center',
-    appearance: 'none',
-    backgroundColor: 'transparent',
-    border: 0,
-    boxSizing: 'border-box',
-    color: '$$textColor',
+    background: '$$background',
     cursor: 'pointer',
-    display: 'inline-flex',
-    justifyContent: 'center',
-    margin: 0,
+    display: 'flex',
+    height: 24,
     outline: 0,
-    padding: 0,
-    size: '100%',
+    justifyContent: 'center',
+    width: 44,
+    userSelect: 'none',
   },
 
-  '.manifest-calendar-cell--text': {
+  '.manifest-calendar-grid--cell__date-text': {
     alignItems: 'center',
+    backgroundColor: '$$backgroundColor',
+    border: '2px solid $$borderColor',
     borderRadius: '$full',
+    color: '$$color',
     display: 'flex',
     justifyContent: 'center',
     position: 'relative',
-    verticalAlign: 'middle',
+    size: 24,
   },
 
   variants: {
     isDisabled: {
       true: {
-        $$textColor: '$colors$text-disabled',
+        '.manifest-calendar-grid--cell__date': {
+          cursor: 'default',
+        },
 
-        cursor: 'default',
+        '.manifest-calendar-grid--cell__date-text': {
+          color: '$text-disabled',
+        },
       },
     },
     isFocusVisible: {
       true: {
-        '.manifest-calendar-cell--text': {
-          outline: '$colors$palette-indigo-200 solid 3px',
+        '.manifest-calendar-grid--cell__date-text': {
+          outline: '$colors$palette-indigo-200 solid 2px',
+        },
+      },
+      false: {
+        '.manifest-calendar-grid--cell__date-text': {
+          outline: 'none',
         },
       },
     },
     isHovered: {
-      true: {
-        '.manifest-calendar-cell--text': {
-          backgroundColor: '$palette-grey-200',
-        },
-      },
+      true: {},
     },
     isOutsideMonth: {
-      true: {
-        $$textColor: '$colors$text-disabled',
-      },
+      true: {},
     },
     isPressed: {
       true: {},
     },
+    isRangeEnd: {
+      true: {},
+    },
+    isRangeStart: {
+      true: {},
+    },
+    isRangeSelection: {
+      true: {},
+    },
     isSelected: {
-      true: {
-        $$backgroundColor: '$colors$palette-indigo-50',
-      },
+      true: {},
     },
     isSelectionEnd: {
-      true: {
-        $$textColor: '$colors$palette-white',
-
-        '.manifest-calendar-cell--button': {
-          background: 'linear-gradient(90deg, $colors$palette-indigo-50 50%, transparent 50%)',
-          borderBottomRightRadius: '$full',
-          borderTopRightRadius: '$full',
-        },
-
-        '.manifest-calendar-cell--text': {
-          backgroundColor: '$primary-default',
-        },
-      },
+      true: {},
     },
     isSelectionStart: {
-      true: {
-        $$textColor: '$colors$palette-white',
-
-        '.manifest-calendar-cell--button': {
-          background: 'linear-gradient(90deg, transparent 50%, $colors$palette-indigo-50 50%)',
-          borderBottomLeftRadius: '$full',
-          borderTopLeftRadius: '$full',
-        },
-
-        '.manifest-calendar-cell--text': {
-          backgroundColor: '$primary-default',
-        },
-      },
+      true: {},
     },
     isToday: {
       true: {
-        '.manifest-calendar-cell--text': {
+        '.manifest-calendar-grid--cell__date-text': {
           fontWeight: '$semibold',
 
           '&::after': {
             content: '""',
             backgroundColor: '$primary-default',
+            bottom: 0,
             height: 1,
-            left: 11,
             position: 'absolute',
-            top: 24,
             width: 11,
           },
         },
@@ -134,32 +120,73 @@ export const calendarCellStyles = css({
 
   compoundVariants: [
     {
-      isHovered: true,
+      isSelected: true,
+      isRangeSelection: false,
+      css: {
+        $$backgroundColor: '$colors$primary-default',
+        $$borderColor: '$colors$palette-indigo-100',
+        $$color: '$colors$palette-white',
+      },
+    },
+    {
+      isSelected: true,
+      isRangeSelection: true,
       isSelectionStart: true,
       css: {
-        $$textColor: '$colors$palette-white',
+        $$backgroundColor: '$colors$primary-default',
+        $$borderColor: '$colors$palette-indigo-100',
+        $$color: '$colors$palette-white',
+        $$background: 'linear-gradient(to left, $colors$palette-indigo-50 50%, transparent 50%)',
 
-        ['.manifest-calendar-cell--text']: {
-          backgroundColor: '$palette-indigo-700',
+        '.manifest-calendar-grid--cell__date-text': {
+          '&::after': {
+            display: 'none',
+          },
         },
       },
     },
     {
-      isHovered: true,
+      isSelected: true,
+      isRangeSelection: true,
       isSelectionEnd: true,
       css: {
-        $$textColor: '$colors$palette-white',
+        $$backgroundColor: '$colors$primary-default',
+        $$borderColor: '$colors$palette-indigo-100',
+        $$color: '$colors$palette-white',
+        $$background: 'linear-gradient(to right, $colors$palette-indigo-50 50%, transparent 50%)',
 
-        ['.manifest-calendar-cell--text']: {
-          backgroundColor: '$palette-indigo-700',
+        '.manifest-calendar-grid--cell__date-text': {
+          '&::after': {
+            display: 'none',
+          },
         },
       },
     },
     {
+      isSelected: true,
+      isRangeSelection: true,
       isSelectionEnd: true,
       isSelectionStart: true,
       css: {
-        background: 'transparent',
+        $$backgroundColor: '$colors$primary-default',
+        $$borderColor: '$colors$palette-indigo-100',
+        $$color: '$colors$palette-white',
+        $$background: 'transparent',
+
+        '.manifest-calendar-grid--cell__date-text': {
+          '&::after': {
+            display: 'none',
+          },
+        },
+      },
+    },
+    {
+      isSelected: true,
+      isRangeSelection: true,
+      isSelectionEnd: false,
+      isSelectionStart: false,
+      css: {
+        $$background: '$colors$palette-indigo-50',
       },
     },
   ],
@@ -176,7 +203,15 @@ export const calendarGridStyles = css({
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'center',
-    py: '$x-small',
+  },
+
+  '.manifest-calendar-grid--cell': {
+    alignItems: 'center',
+    display: 'inline-flex',
+    height: '2rem',
+    justifyContent: 'center',
+    position: 'relative',
+    width: '2.75rem',
   },
 });
 

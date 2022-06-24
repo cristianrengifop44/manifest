@@ -1,4 +1,3 @@
-import type { CalendarProps as AriaCalendarProps, DateValue } from '@react-types/calendar';
 import type { CalendarState, RangeCalendarState } from '@react-stately/calendar';
 import type { AriaButtonProps } from '@react-types/button';
 import * as React from 'react';
@@ -6,6 +5,7 @@ import { AriaCalendarCellProps, useCalendarCell, useCalendarGrid } from '@react-
 import {
   CalendarDate,
   endOfMonth,
+  getDayOfWeek,
   getWeeksInMonth,
   isSameDay,
   isSameMonth,
@@ -49,11 +49,10 @@ const useCalendarContext = () => React.useContext(CalendarContext);
  * -----------------------------------------------------------------------------------------------
  */
 
-type CalendarAriaProps = AriaCalendarProps<DateValue>;
 type CalendarElement = React.ElementRef<'div'>;
-type CalendarNativeProps = Omit<React.ComponentPropsWithoutRef<'div'>, keyof CalendarAriaProps>;
+type CalendarNativeProps = React.ComponentPropsWithoutRef<'div'>;
 
-interface CalendarProps extends CalendarNativeProps, CalendarAriaProps {
+interface CalendarProps extends CalendarNativeProps {
   /**
    * Theme aware style object.
    */
@@ -135,10 +134,14 @@ const CalendarCell = React.forwardRef<CalendarDateElement, CalendarCellProps>(
 
     const dateRef = React.useRef<HTMLButtonElement>(null);
 
-    const { cellProps, buttonProps, isPressed, isSelected, isDisabled, formattedDate } =
+    const { locale } = useLocale();
+
+    const { cellProps, buttonProps, formattedDate, isDisabled, isInvalid, isPressed, isSelected } =
       useCalendarCell(props, state, dateRef);
 
     const highlightedRange = 'highlightedRange' in state && state.highlightedRange;
+
+    const dayOfWeek = getDayOfWeek(props.date, locale);
 
     const isOutsideMonth = !isSameMonth(currentMonth, date);
 
@@ -146,6 +149,19 @@ const CalendarCell = React.forwardRef<CalendarDateElement, CalendarCellProps>(
       ? isSameDay(date, highlightedRange.start)
       : isSelected;
     const isSelectionEnd = highlightedRange ? isSameDay(date, highlightedRange.end) : isSelected;
+
+    const isLastSelectedBeforeDisabled =
+      !isDisabled && !isInvalid && state.isCellUnavailable(props.date.add({ days: 1 }));
+    const isFirstSelectedAfterDisabled =
+      !isDisabled && !isInvalid && state.isCellUnavailable(props.date.subtract({ days: 1 }));
+
+    const isRangeStart =
+      isSelected && (isFirstSelectedAfterDisabled || dayOfWeek === 0 || props.date.day === 1);
+    const isRangeEnd =
+      isSelected &&
+      (isLastSelectedBeforeDisabled ||
+        dayOfWeek === 6 ||
+        props.date.day === currentMonth.calendar.getDaysInMonth(currentMonth));
 
     const { focusProps, isFocusVisible } = useFocusRing();
     const { hoverProps, isHovered } = useHover({ isDisabled: isDisabled || state.isReadOnly });
@@ -156,6 +172,9 @@ const CalendarCell = React.forwardRef<CalendarDateElement, CalendarCellProps>(
       isFocusVisible,
       isOutsideMonth,
       isPressed,
+      isRangeEnd,
+      isRangeStart,
+      isRangeSelection: isSelected && 'highlightedRange' in state,
       isSelected,
       isSelectionEnd,
       isSelectionStart,
@@ -166,18 +185,18 @@ const CalendarCell = React.forwardRef<CalendarDateElement, CalendarCellProps>(
     return (
       <div
         {...mergeProps(cellProps, other)}
-        className={cx('manifest-calendar-cell', className, classNameProp)}
+        className={cx('manifest-calendar-grid--cell', className, classNameProp)}
         ref={forwardedRef}
       >
-        <button
+        <span
           {...mergeProps(buttonProps, hoverProps, focusProps)}
-          className="manifest-calendar-cell--button"
+          className="manifest-calendar-grid--cell__date"
           ref={dateRef}
         >
-          <Typography className="manifest-calendar-cell--text" variant="caption">
-            {formattedDate}
+          <Typography className="manifest-calendar-grid--cell__date-text" variant="caption">
+            <span>{formattedDate}</span>
           </Typography>
-        </button>
+        </span>
       </div>
     );
   },
@@ -220,7 +239,6 @@ const CalendarGrid = React.forwardRef<CalendarGridElement, CalendarGridProps>(
     const { gridProps, headerProps, weekDays } = useCalendarGrid({ endDate, startDate }, state);
 
     const { className } = calendarGridStyles({ css });
-    const { className: cellClassName } = calendarCellStyles();
 
     return (
       <div
@@ -228,21 +246,23 @@ const CalendarGrid = React.forwardRef<CalendarGridElement, CalendarGridProps>(
         className={cx('manifest-calendar-grid', className, classNameProp)}
         ref={forwardedRef}
       >
-        <div {...headerProps} className="manifest-calendar-grid--row">
+        <div className="manifest-calendar-grid--row" {...headerProps}>
           {weekDays.map((day, dayIndex) => (
-            <div className={cx('manifest-calendar-cell', cellClassName)} key={dayIndex}>
-              <Typography className="manifest-calendar-cell--text" variant="caption">
-                {day}
-              </Typography>
+            <div className="manifest-calendar-grid--cell" key={dayIndex}>
+              <Typography variant="caption">{day}</Typography>
             </div>
           ))}
         </div>
         {[...new Array(weeksInMonth).keys()].map(weekIndex => (
-          <div className="manifest-calendar--grid-row" key={weekIndex}>
+          <div className="manifest-calendar-grid--row" key={weekIndex}>
             {state
               .getDatesInWeek(weekIndex)
               .map((date, i) =>
-                date ? <CalendarCell currentMonth={startDate} date={date} key={i} /> : null,
+                date ? (
+                  <CalendarCell currentMonth={startDate} date={date} key={i} />
+                ) : (
+                  <div key={i} />
+                ),
               )}
           </div>
         ))}
