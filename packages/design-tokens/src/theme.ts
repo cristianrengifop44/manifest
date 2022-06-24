@@ -1,8 +1,3 @@
-/**
- * Do not edit directly
- * Generated on Fri, 24 Jun 2022 02:31:02 GMT
- */
-
 import * as tokens from './tokens';
 
 export type Theme = typeof theme;

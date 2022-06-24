@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSS, cx, useBoxStyles } from './styles';
+import { CSS, cx, useBoxStyles } from './Box.styles';
 
 /**
  * -----------------------------------------------------------------------------------------------
