@@ -1,6 +1,6 @@
 import type { Placement, OverlayTriggerProps } from '@react-types/overlays';
 import * as React from 'react';
-import { CSS, cx, usePopoverStyles } from './styles';
+import { CSS, cx, usePopoverStyles } from './Popover.styles';
 import {
   DismissButton,
   OverlayContainer,
@@ -12,7 +12,6 @@ import {
 import { mergeProps, mergeRefs } from '@react-aria/utils';
 import { FocusScope } from '@react-aria/focus';
 import { useOverlayTriggerState } from '@react-stately/overlays';
-import { useDialog } from '@react-aria/dialog';
 
 /**
  * -----------------------------------------------------------------------------------------------
@@ -45,6 +44,10 @@ interface PopoverProps extends PopoverNativeProps {
    */
   isOpen?: boolean;
   /**
+   * Whether the popover should not behave as a modal.
+   */
+  isNonModal?: boolean;
+  /**
    * Whether the popover should close when focus is lost or moves outside it.
    *
    * @default false
@@ -65,11 +68,12 @@ interface PopoverProps extends PopoverNativeProps {
 
 const Popover = React.forwardRef<PopoverElement, PopoverProps>((props, forwardedRef) => {
   const {
+    children,
     className: classNameProp,
     css,
     isDismissable = true,
     isKeyboardDismissDisabled = false,
-    children,
+    isNonModal,
     isOpen,
     onClose,
     shouldCloseOnBlur = false,
@@ -90,8 +94,7 @@ const Popover = React.forwardRef<PopoverElement, PopoverProps>((props, forwarded
     },
     popoverRef,
   );
-  const { modalProps } = useModal({ isDisabled: true });
-  const { dialogProps } = useDialog({ role: 'dialog' }, popoverRef);
+  const { modalProps } = useModal({ isDisabled: isNonModal });
   const { className } = usePopoverStyles({ css });
 
   if (!isOpen) return null;
@@ -100,7 +103,7 @@ const Popover = React.forwardRef<PopoverElement, PopoverProps>((props, forwarded
     <OverlayContainer>
       <FocusScope restoreFocus>
         <div
-          {...mergeProps(overlayProps, dialogProps, other, modalProps)}
+          {...mergeProps(other, overlayProps, modalProps)}
           className={cx('manifest-popover', className, classNameProp)}
           ref={mergeRefs(popoverRef, forwardedRef)}
         >

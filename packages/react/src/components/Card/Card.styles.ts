@@ -16,7 +16,8 @@ export const useCardBodyStyles = css({
   height: 'auto',
   justifyContent: 'inherit',
   position: 'relative',
-  px: '1.25rem',
+  padding: '$large',
+  typography: '$body',
   width: '100%',
 });
 
@@ -25,9 +26,8 @@ export const useCardFooterStyles = css({
   display: 'flex',
   height: 'auto',
   justifyContent: 'flex-end',
-  paddingBottom: '1.25rem',
-  paddingTop: '$large',
-  px: '1.25rem',
+  paddingBottom: '$large',
+  px: '$large',
   width: '100%',
 });
 
@@ -36,9 +36,9 @@ export const useCardHeaderStyles = css({
   display: 'flex',
   justifyContent: 'flex-start',
   width: '100%',
-  paddingTop: '1.25rem',
-  paddingBottom: '$large',
-  px: '1.25rem',
+  paddingTop: '$large',
+  px: '$large',
+  typography: '$title',
 });
 
 export type { CSS } from '../../styles';

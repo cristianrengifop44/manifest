@@ -176,9 +176,11 @@ const ListBoxItem: React.FC<ListBoxItemProps> = props => {
           {startIcon}
         </span>
       )}
+
       <Typography {...labelProps} className="manifest-listbox-item--text" variant="subtext">
         {rendered}
       </Typography>
+
       {endIcon && (
         <span className={cx('manifest-listbox-item--icon', 'manifest-listbox-item--icon__end')}>
           {endIcon}

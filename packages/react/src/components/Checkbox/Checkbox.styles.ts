@@ -1,8 +1,8 @@
 import { css } from '../../styles';
 
 export const useCheckboxStyles = css({
-  $$checkboxBackgroundColor: '$colors$background-primary',
-  $$checkboxBorderColor: '$colors$palette-grey-500',
+  $$backgroundColor: '$colors$background-primary',
+  $$borderColor: '$colors$palette-grey-500',
 
   alignItems: 'center',
   boxSizing: 'border-box',
@@ -12,8 +12,8 @@ export const useCheckboxStyles = css({
   width: 'auto',
 
   '.manifest-checkbox--control': {
-    backgroundColor: '$$checkboxBackgroundColor',
-    border: '2px solid $$checkboxBorderColor',
+    backgroundColor: '$$backgroundColor',
+    border: '2px solid $$borderColor',
     borderRadius: '$small',
     color: '$palette-white',
     cursor: 'pointer',
@@ -52,8 +52,8 @@ export const useCheckboxStyles = css({
   variants: {
     isChecked: {
       true: {
-        $$checkboxBackgroundColor: '$colors$primary-default',
-        $$checkboxBorderColor: '$colors$primary-default',
+        $$backgroundColor: '$colors$primary-default',
+        $$borderColor: '$colors$primary-default',
       },
     },
     isDisabled: {
@@ -75,7 +75,13 @@ export const useCheckboxStyles = css({
     },
     isHovered: {
       true: {
-        $$checkboxBorderColor: '$colors$palette-grey-600',
+        $$borderColor: '$colors$palette-grey-600',
+      },
+    },
+    isIndeterminate: {
+      true: {
+        $$backgroundColor: '$colors$primary-default',
+        $$borderColor: '$colors$primary-default',
       },
     },
   },

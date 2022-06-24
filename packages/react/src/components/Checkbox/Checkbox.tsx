@@ -1,6 +1,6 @@
 import type { AriaCheckboxProps } from '@react-types/checkbox';
 import * as React from 'react';
-import { CSS, cx, useCheckboxStyles } from './styles';
+import { CSS, cx, useCheckboxStyles } from './Checkbox.styles';
 import { Icon } from '../Icon';
 import { mergeProps } from '@react-aria/utils';
 import { Typography } from '../Typography';
@@ -52,6 +52,7 @@ const Checkbox = React.forwardRef<CheckboxElement, CheckboxProps>((props, forwar
     isDisabled,
     isFocusVisible,
     isHovered,
+    isIndeterminate,
   });
 
   return (

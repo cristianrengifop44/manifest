@@ -1,6 +1,6 @@
 import { css } from '../../styles';
 
-export const comboboxStyles = css({
+export const useComboboxStyles = css({
   $$backgroundColor: '$colors$background-primary',
   $$borderColor: '$colors$palette-grey-500',
   $$iconColor: '$colors$text-tertiary',
@@ -17,7 +17,6 @@ export const comboboxStyles = css({
     display: 'inline-flex',
     justifyContent: 'center',
     padding: '$small',
-    pointerEvents: 'none',
     position: 'absolute',
     top: 0,
     zIndex: 2,

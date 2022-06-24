@@ -6,7 +6,7 @@ import {
   useCardBodyStyles,
   useCardFooterStyles,
   useCardHeaderStyles,
-} from './styles';
+} from './Card.styles';
 
 /**
  * -----------------------------------------------------------------------------------------------
