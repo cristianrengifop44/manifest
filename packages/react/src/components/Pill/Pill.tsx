@@ -1,4 +1,3 @@
-import type { ManifestProps } from '../../types';
 import * as React from 'react';
 import { CSS, cx, usePillStyles } from './styles';
 import { useTooltip, useTooltipTrigger } from '@react-aria/tooltip';

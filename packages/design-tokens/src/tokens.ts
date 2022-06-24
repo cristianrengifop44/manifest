@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Thu, 23 Jun 2022 18:40:44 GMT
+ * Generated on Fri, 24 Jun 2022 02:07:18 GMT
  */
 
 export const RADIUS_FULL = '999em';

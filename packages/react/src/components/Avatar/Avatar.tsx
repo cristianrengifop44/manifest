@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CSS, cx, useAvatarStyles } from './styles';
+import { CSS, cx, useAvatarStyles } from './Avatar.styles';
 import { useLayoutEffect } from '@react-aria/utils';
 
 /**
@@ -54,7 +54,7 @@ const Avatar = React.forwardRef<AvatarElement, AvatarProps>((props, forwardedRef
   return (
     <div {...other} className={cx('manifest-avatar', className, classNameProp)} ref={forwardedRef}>
       {status === 'loaded' && <img alt={alt} className="manifest-avatar--image" src={src} />}
-      {status === 'error' && <span className="manifest-avatart--fallback">{fallback}</span>}
+      {status !== 'loaded' && <span className="manifest-avatar--fallback">{fallback}</span>}
     </div>
   );
 });
