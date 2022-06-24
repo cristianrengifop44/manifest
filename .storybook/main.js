@@ -5,19 +5,4 @@ module.exports = {
   },
   staticDirs: ['public'],
   stories: ['../packages/**/*.stories.mdx', '../packages/**/*.stories.@(js|jsx|ts|tsx)'],
-  typescript: {
-    check: false,
-    checkOptions: {},
-    reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {
-      shouldExtractLiteralValuesFromEnum: true,
-      propFilter(prop) {
-        if (prop.parent) {
-          return !prop.parent.fileName.includes('node_modules');
-        }
-        
-        return true;
-      },
-    },
-  },
 };

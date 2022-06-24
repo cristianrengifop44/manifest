@@ -18,7 +18,7 @@ import {
   calendarHeaderStyles,
   CSS,
   cx,
-} from './styles';
+} from './Calendar.styles';
 import { useDateFormatter, useLocale } from '@react-aria/i18n';
 import { Icon } from '../Icon';
 import { IconButton } from '../Button';
