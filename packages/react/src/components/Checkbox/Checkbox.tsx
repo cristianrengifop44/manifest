@@ -45,6 +45,7 @@ const Checkbox = React.forwardRef<CheckboxElement, CheckboxProps>((props, forwar
   const { inputProps } = useCheckbox(props, state, inputRef);
   const { isFocusVisible, focusProps } = useFocusRing({ autoFocus });
   const { isHovered, hoverProps } = useHover({ isDisabled });
+
   const { className } = useCheckboxStyles({
     css,
     isChecked,
