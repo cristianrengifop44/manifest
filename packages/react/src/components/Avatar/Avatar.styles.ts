@@ -49,7 +49,7 @@ export const useAvatarStyles = css({
       small: {
         $$avatarSize: '1.75rem',
         $$avatarFontSize: '$fontSizes$x-small',
-        $$avatarLineHeight: '$lineHeights$small',
+        $$avatarLineHeight: '$0.875rem',
       },
     },
   },
