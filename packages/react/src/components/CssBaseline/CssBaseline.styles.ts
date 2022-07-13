@@ -1,6 +1,6 @@
-import { globalCss } from '../config';
+import { globalCss } from '@project44-manifest/styles';
 
-export const globalStyles = globalCss({
+export const useStyles = globalCss({
   '*, *:before, *:after': {
     boxSizing: 'border-box',
     textRendering: 'geometricPrecision',
