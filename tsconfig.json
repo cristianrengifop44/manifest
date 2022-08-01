@@ -13,6 +13,9 @@
     },
     {
       "path": "packages/vessel"
+    },
+    {
+      "path": "packages/website"
     }
   ]
 }
